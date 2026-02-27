@@ -13,6 +13,10 @@ The result is a kind of **cognitive fingerprint** — a structural map of how a 
 
 ## How to Use
 
+**Quick Start:** The visualiser is available online at **[GitHub Pages](https://demoive.github.io/conversation-cartography/)** — no installation required.
+
+Alternatively, you can run it locally by opening `index.html` in any modern browser.
+
 This is a two-step process: **generate the JSON** using Google AI Studio, then **load it into the visualiser**.
 
 ### Step 1 — Generate the JSON in Google AI Studio
@@ -26,7 +30,7 @@ This is a two-step process: **generate the JSON** using Google AI Studio, then *
 
 ### Step 2 — Visualise in the tool
 
-1. Open `index.html` in any modern browser (no server needed — it runs entirely client-side)
+1. Go to **[https://demoive.github.io/conversation-cartography/](https://demoive.github.io/conversation-cartography/)** or open `index.html` locally in any modern browser (no server needed — it runs entirely client-side)
 2. Click **Load JSON** and select the file you saved in Step 1
 3. Switch between the four views using the tabs: **Transcript**, **Git Log**, **Git Tree**, and **Git Commands**
 
