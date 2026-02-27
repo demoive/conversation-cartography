@@ -1,0 +1,1716 @@
+{
+  "topics": [
+    {
+      "id": "t_main",
+      "label": "2016 First Presidential Debate: Central Governance and Policy",
+      "is_main": true
+    },
+    {
+      "id": "t_economy",
+      "label": "Economic Policy and Job Creation",
+      "is_main": false
+    },
+    {
+      "id": "t_trade",
+      "label": "International Trade and NAFTA",
+      "is_main": false
+    },
+    {
+      "id": "t_finance",
+      "label": "Tax Returns and Personal Business Background",
+      "is_main": false
+    },
+    {
+      "id": "t_emails",
+      "label": "Clinton Email Controversy",
+      "is_main": false
+    },
+    {
+      "id": "t_race",
+      "label": "Race Relations and Criminal Justice Reform",
+      "is_main": false
+    },
+    {
+      "id": "t_birther",
+      "label": "Presidential Birth Certificate Controversy",
+      "is_main": false
+    },
+    {
+      "id": "t_security",
+      "label": "National Security and Cybersecurity",
+      "is_main": false
+    },
+    {
+      "id": "t_foreign",
+      "label": "Foreign Policy, ISIS, and NATO",
+      "is_main": false
+    },
+    {
+      "id": "t_character",
+      "label": "Stamina and Character Attacks",
+      "is_main": false
+    }
+  ],
+  "branches": [
+    {
+      "name": "main",
+      "topic_id": "t_main",
+      "resolved": true,
+      "merge_node_id": null
+    },
+    {
+      "name": "economic_trade",
+      "topic_id": "t_trade",
+      "resolved": true,
+      "merge_node_id": "n_holt_direction_start"
+    },
+    {
+      "name": "financial_dispute",
+      "topic_id": "t_finance",
+      "resolved": true,
+      "merge_node_id": "n_holt_race_start"
+    },
+    {
+      "name": "birther_digression",
+      "topic_id": "t_birther",
+      "resolved": true,
+      "merge_node_id": "n_holt_cyber_start"
+    },
+    {
+      "name": "character_clash",
+      "topic_id": "t_character",
+      "resolved": true,
+      "merge_node_id": "n_final_outcome"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "speaker": "HOLT",
+      "text": "Good evening from Hofstra University in Hempstead, New York. I’m Lester Holt, anchor of “NBC Nightly News.” I want to welcome you to the first presidential debate.",
+      "parent_id": null,
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n2",
+      "speaker": "HOLT",
+      "text": "The participants tonight are Donald Trump and Hillary Clinton. This debate is sponsored by the Commission on Presidential Debates, a nonpartisan, nonprofit organization. The commission drafted tonight’s format, and the rules have been agreed to by the campaigns.",
+      "parent_id": "n1",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n3",
+      "speaker": "HOLT",
+      "text": "The 90-minute debate is divided into six segments, each 15 minutes long. We’ll explore three topic areas tonight: Achieving prosperity; America’s direction; and securing America. At the start of each segment, I will ask the same lead-off question to both candidates, and they will each have up to two minutes to respond. From that point until the end of the segment, we’ll have an open discussion.",
+      "parent_id": "n2",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n4",
+      "speaker": "HOLT",
+      "text": "The questions are mine and have not been shared with the commission or the campaigns. The audience here in the room has agreed to remain silent so that we can focus on what the candidates are saying.",
+      "parent_id": "n3",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n5",
+      "speaker": "HOLT",
+      "text": "I will invite you to applaud, however, at this moment, as we welcome the candidates: Democratic nominee for president of the United States, Hillary Clinton, and Republican nominee for president of the United States, Donald J. Trump.",
+      "parent_id": "n4",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n6",
+      "speaker": "CLINTON",
+      "text": "How are you, Donald?",
+      "parent_id": "n5",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n7",
+      "speaker": "HOLT",
+      "text": "Good luck to you.",
+      "parent_id": "n6",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n8",
+      "speaker": "HOLT",
+      "text": "Well, I don’t expect us to cover all the issues of this campaign tonight, but I remind everyone, there are two more presidential debates scheduled. We are going to focus on many of the issues that voters tell us are most important, and we’re going to press for specifics. I am honored to have this role, but this evening belongs to the candidates and, just as important, to the American people.",
+      "parent_id": "n7",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n9",
+      "speaker": "HOLT",
+      "text": "Candidates, we look forward to hearing you articulate your policies and your positions, as well as your visions and your values. So, let’s begin.",
+      "parent_id": "n8",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n10",
+      "speaker": "HOLT",
+      "text": "We’re calling this opening segment “Achieving Prosperity.” And central to that is jobs. There are two economic realities in America today. There’s been a record six straight years of job growth, and new census numbers show incomes have increased at a record rate after years of stagnation. However, income inequality remains significant, and nearly half of Americans are living paycheck to paycheck.",
+      "parent_id": "n9",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n11",
+      "speaker": "HOLT",
+      "text": "Beginning with you, Secretary Clinton, why are you a better choice than your opponent to create the kinds of jobs that will put more money into the pockets of American works?",
+      "parent_id": "n10",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n12",
+      "speaker": "CLINTON",
+      "text": "Well, thank you, Lester, and thanks to Hofstra for hosting us.",
+      "parent_id": "n11",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 0.5
+        },
+        {
+          "topic_id": "t_economy",
+          "weight": 0.5
+        }
+      ],
+      "deviation_score": 0.5,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n13",
+      "speaker": "CLINTON",
+      "text": "The central question in this election is really what kind of country we want to be and what kind of future we’ll build together. Today is my granddaughter’s second birthday, so I think about this a lot. First, we have to build an economy that works for everyone, not just those at the top. That means we need new jobs, good jobs, with rising incomes.",
+      "parent_id": "n12",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 0.8
+        },
+        {
+          "topic_id": "t_character",
+          "weight": 0.2
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n14",
+      "speaker": "CLINTON",
+      "text": "I want us to invest in you. I want us to invest in your future. That means jobs in infrastructure, in advanced manufacturing, innovation and technology, clean, renewable energy, and small business, because most of the new jobs will come from small business. We also have to make the economy fairer. That starts with raising the national minimum wage and also guarantee, finally, equal pay for women’s work.",
+      "parent_id": "n13",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n15",
+      "speaker": "CLINTON",
+      "text": "I also want to see more companies do profit-sharing. If you help create the profits, you should be able to share in them, not just the executives at the top.",
+      "parent_id": "n14",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n16",
+      "speaker": "CLINTON",
+      "text": "And I want us to do more to support people who are struggling to balance family and work. I’ve heard from so many of you about the difficult choices you face and the stresses that you’re under. So let’s have paid family leave, earned sick days. Let’s be sure we have affordable child care and debt-free college.",
+      "parent_id": "n15",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n17",
+      "speaker": "CLINTON",
+      "text": "How are we going to do it? We’re going to do it by having the wealthy pay their fair share and close the corporate loopholes.",
+      "parent_id": "n16",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n18",
+      "speaker": "CLINTON",
+      "text": "Finally, we tonight are on the stage together, Donald Trump and I. Donald, it’s good to be with you. We’re going to have a debate where we are talking about the important issues facing our country. You have to judge us, who can shoulder the immense, awesome responsibilities of the presidency, who can put into action the plans that will make your life better. I hope that I will be able to earn your vote on November 8th.",
+      "parent_id": "n17",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 0.5
+        },
+        {
+          "topic_id": "t_economy",
+          "weight": 0.5
+        }
+      ],
+      "deviation_score": 0.5,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n19",
+      "speaker": "HOLT",
+      "text": "Secretary Clinton, thank you. Mr. Trump, the same question to you. It’s about putting money — more money into the pockets of American workers. You have up to two minutes.",
+      "parent_id": "n18",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n20",
+      "speaker": "TRUMP",
+      "text": "Thank you, Lester. Our jobs are fleeing the country. They’re going to Mexico. They’re going to many other countries. You look at what China is doing to our country in terms of making our product. They’re devaluing their currency, and there’s nobody in our government to fight them. And we have a very good fight. And we have a winning fight. Because they’re using our country as a piggy bank to rebuild China, and many other countries are doing the same thing.",
+      "parent_id": "n19",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 0.4
+        },
+        {
+          "topic_id": "t_trade",
+          "weight": 0.6
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n21",
+      "speaker": "TRUMP",
+      "text": "So we’re losing our good jobs, so many of them. When you look at what’s happening in Mexico, a friend of mine who builds plants said it’s the eighth wonder of the world. They’re building some of the biggest plants anywhere in the world, some of the most sophisticated, some of the best plants. With the United States, as he said, not so much.",
+      "parent_id": "n20",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n22",
+      "speaker": "TRUMP",
+      "text": "So Ford is leaving. You see that, their small car division leaving. Thousands of jobs leaving Michigan, leaving Ohio. They’re all leaving. And we can’t allow it to happen anymore. As far as child care is concerned and so many other things, I think Hillary and I agree on that. We probably disagree a little bit as to numbers and amounts and what we’re going to do, but perhaps we’ll be talking about that later.",
+      "parent_id": "n21",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 0.8
+        },
+        {
+          "topic_id": "t_economy",
+          "weight": 0.2
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n23",
+      "speaker": "TRUMP",
+      "text": "But we have to stop our jobs from being stolen from us. We have to stop our companies from leaving the United States and, with it, firing all of their people. All you have to do is take a look at Carrier air conditioning in Indianapolis. They left — fired 1,400 people. They’re going to Mexico. So many hundreds and hundreds of companies are doing this.",
+      "parent_id": "n22",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n24",
+      "speaker": "TRUMP",
+      "text": "We cannot let it happen. Under my plan, I’ll be reducing taxes tremendously, from 35 percent to 15 percent for companies, small and big businesses. That’s going to be a job creator like we haven’t seen since Ronald Reagan. It’s going to be a beautiful thing to watch.",
+      "parent_id": "n23",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n25",
+      "speaker": "TRUMP",
+      "text": "Companies will come. They will build. They will expand. New companies will start. And I look very, very much forward to doing it. We have to renegotiate our trade deals, and we have to stop these countries from stealing our companies and our jobs.",
+      "parent_id": "n24",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 0.5
+        },
+        {
+          "topic_id": "t_economy",
+          "weight": 0.5
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n26",
+      "speaker": "HOLT",
+      "text": "Secretary Clinton, would you like to respond?",
+      "parent_id": "n25",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n27",
+      "speaker": "CLINTON",
+      "text": "Well, I think that trade is an important issue. Of course, we are 5 percent of the world’s population; we have to trade with the other 95 percent. And we need to have smart, fair trade deals. We also, though, need to have a tax system that rewards work and not just financial transactions. And the kind of plan that Donald has put forth would be trickle-down economics all over again. In fact, it would be the most extreme version, the biggest tax cuts for the top percent of the people in this country than we’ve ever had.",
+      "parent_id": "n26",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 0.4
+        },
+        {
+          "topic_id": "t_economy",
+          "weight": 0.6
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n28",
+      "speaker": "CLINTON",
+      "text": "I call it trumped-up trickle-down, because that’s exactly what it would be. That is not how we grow the economy.",
+      "parent_id": "n27",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n29",
+      "speaker": "CLINTON",
+      "text": "We just have a different view about what’s best for growing the economy, how we make investments that will actually produce jobs and rising incomes.",
+      "parent_id": "n28",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n30",
+      "speaker": "CLINTON",
+      "text": "I think we come at it from somewhat different perspectives. I understand that. You know, Donald was very fortunate in his life, and that’s all to his benefit. He started his business with $14 million, borrowed from his father, and he really believes that the more you help wealthy people, the better off we’ll be and that everything will work out from there.",
+      "parent_id": "n29",
+      "topic_assignments": [
+        {
+          "topic_id": "t_finance",
+          "weight": 0.8
+        },
+        {
+          "topic_id": "t_economy",
+          "weight": 0.2
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "financial_dispute",
+      "timestamp": null
+    },
+    {
+      "id": "n31",
+      "speaker": "CLINTON",
+      "text": "I don’t buy that. I have a different experience. My father was a small-businessman. He worked really hard. He printed drapery fabrics on long tables, where he pulled out those fabrics and he went down with a silkscreen and dumped the paint in and took the squeegee and kept going.",
+      "parent_id": "n30",
+      "topic_assignments": [
+        {
+          "topic_id": "t_finance",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "financial_dispute",
+      "timestamp": null
+    },
+    {
+      "id": "n32",
+      "speaker": "CLINTON",
+      "text": "And so what I believe is the more we can do for the middle class, the more we can invest in you, your education, your skills, your future, the better we will be off and the better we’ll grow. That’s the kind of economy I want us to see again.",
+      "parent_id": "n31",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n33",
+      "speaker": "HOLT",
+      "text": "Let me follow up with Mr. Trump, if you can. You’ve talked about creating 25 million jobs, and you’ve promised to bring back millions of jobs for Americans. How are you going to bring back the industries that have left this country for cheaper labor overseas? How, specifically, are you going to tell American manufacturers that you have to come back?",
+      "parent_id": "n32",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 0.7
+        },
+        {
+          "topic_id": "t_economy",
+          "weight": 0.3
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n34",
+      "speaker": "TRUMP",
+      "text": "Well, for one thing — and before we start on that — my father gave me a very small loan in 1975, and I built it into a company that’s worth many, many billions of dollars, with some of the greatest assets in the world, and I say that only because that’s the kind of thinking that our country needs.",
+      "parent_id": "n33",
+      "topic_assignments": [
+        {
+          "topic_id": "t_finance",
+          "weight": 0.9
+        },
+        {
+          "topic_id": "t_main",
+          "weight": 0.1
+        }
+      ],
+      "deviation_score": 0.9,
+      "branch": "financial_dispute",
+      "timestamp": null
+    },
+    {
+      "id": "n35",
+      "speaker": "TRUMP",
+      "text": "Our country’s in deep trouble. We don’t know what we’re doing when it comes to devaluations and all of these countries all over the world, especially China. They’re the best, the best ever at it. What they’re doing to us is a very, very sad thing.",
+      "parent_id": "n34",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n36",
+      "speaker": "TRUMP",
+      "text": "So we have to do that. We have to renegotiate our trade deals. And, Lester, they’re taking our jobs, they’re giving incentives, they’re doing things that, frankly, we don’t do.",
+      "parent_id": "n35",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n37",
+      "speaker": "TRUMP",
+      "text": "Let me give you the example of Mexico. They have a VAT tax. We’re on a different system. When we sell into Mexico, there’s a tax. When they sell in — automatic, 16 percent, approximately. When they sell into us, there’s no tax. It’s a defective agreement. It’s been defective for a long time, many years, but the politicians haven’t done anything about it.",
+      "parent_id": "n36",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n38",
+      "speaker": "TRUMP",
+      "text": "Now, in all fairness to Secretary Clinton — yes, is that OK? Good. I want you to be very happy. It’s very important to me.",
+      "parent_id": "n37",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n39",
+      "speaker": "TRUMP",
+      "text": "But in all fairness to Secretary Clinton, when she started talking about this, it was really very recently. She’s been doing this for 30 years. And why hasn’t she made the agreements better? The NAFTA agreement is defective. Just because of the tax and many other reasons, but just because of the fact...",
+      "parent_id": "n38",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 0.8
+        },
+        {
+          "topic_id": "t_character",
+          "weight": 0.2
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n40",
+      "speaker": "HOLT",
+      "text": "Let me interrupt just a moment, but...",
+      "parent_id": "n39",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n41",
+      "speaker": "TRUMP",
+      "text": "Secretary Clinton and others, politicians, should have been doing this for years, not right now, because of the fact that we’ve created a movement. They should have been doing this for years. What’s happened to our jobs and our country and our economy generally is — look, we owe $20 trillion. We cannot do it any longer, Lester.",
+      "parent_id": "n40",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 0.5
+        },
+        {
+          "topic_id": "t_trade",
+          "weight": 0.5
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n42",
+      "speaker": "HOLT",
+      "text": "Back to the question, though. How do you bring back — specifically bring back jobs, American manufacturers? How do you make them bring the jobs back?",
+      "parent_id": "n41",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n43",
+      "speaker": "TRUMP",
+      "text": "Well, the first thing you do is don’t let the jobs leave. The companies are leaving. I could name, I mean, there are thousands of them. They’re leaving, and they’re leaving in bigger numbers than ever.",
+      "parent_id": "n42",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n44",
+      "speaker": "TRUMP",
+      "text": "And what you do is you say, fine, you want to go to Mexico or some other country, good luck. We wish you a lot of luck. But if you think you’re going to make your air conditioners or your cars or your cookies or whatever you make and bring them into our country without a tax, you’re wrong.",
+      "parent_id": "n43",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n45",
+      "speaker": "TRUMP",
+      "text": "And once you say you’re going to have to tax them coming in, and our politicians never do this, because they have special interests and the special interests want those companies to leave, because in many cases, they own the companies. So what I’m saying is, we can stop them from leaving. We have to stop them from leaving. And that’s a big, big factor.",
+      "parent_id": "n44",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 0.9
+        },
+        {
+          "topic_id": "t_character",
+          "weight": 0.1
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n46",
+      "speaker": "HOLT",
+      "text": "Let me let Secretary Clinton get in here.",
+      "parent_id": "n45",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n47",
+      "speaker": "CLINTON",
+      "text": "Well, let’s stop for a second and remember where we were eight years ago. We had the worst financial crisis, the Great Recession, the worst since the 1930s. That was in large part because of tax policies that slashed taxes on the wealthy, failed to invest in the middle class, took their eyes off of Wall Street, and created a perfect storm.",
+      "parent_id": "n46",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n48",
+      "speaker": "CLINTON",
+      "text": "In fact, Donald was one of the people who rooted for the housing crisis. He said, back in 2006, “Gee, I hope it does collapse, because then I can go in and buy some and make some money.” Well, it did collapse.",
+      "parent_id": "n47",
+      "topic_assignments": [
+        {
+          "topic_id": "t_finance",
+          "weight": 0.7
+        },
+        {
+          "topic_id": "t_economy",
+          "weight": 0.3
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "financial_dispute",
+      "timestamp": null
+    },
+    {
+      "id": "n49",
+      "speaker": "TRUMP",
+      "text": "That’s called business, by the way.",
+      "parent_id": "n48",
+      "topic_assignments": [
+        {
+          "topic_id": "t_finance",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "financial_dispute",
+      "timestamp": null
+    },
+    {
+      "id": "n50",
+      "speaker": "CLINTON",
+      "text": "Nine million people — nine million people lost their jobs. Five million people lost their homes. And $13 trillion in family wealth was wiped out.",
+      "parent_id": "n49",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n51",
+      "speaker": "CLINTON",
+      "text": "Now, we have come back from that abyss. And it has not been easy. So we’re now on the precipice of having a potentially much better economy, but the last thing we need to do is to go back to the policies that failed us in the first place.",
+      "parent_id": "n50",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n52",
+      "speaker": "CLINTON",
+      "text": "Independent experts have looked at what I’ve proposed and looked at what Donald’s proposed, and basically they’ve said this, that if his tax plan, which would blow up the debt by over $5 trillion and would in some instances disadvantage middle-class families compared to the wealthy, were to go into effect, we would lose 3.5 million jobs and maybe have another recession.",
+      "parent_id": "n51",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n53",
+      "speaker": "CLINTON",
+      "text": "They’ve looked at my plans and they’ve said, OK, if we can do this, and I intend to get it done, we will have 10 million more new jobs, because we will be making investments where we can grow the economy. Take clean energy. Some country is going to be the clean- energy superpower of the 21st century. Donald thinks that climate change is a hoax perpetrated by the Chinese. I think it’s real.",
+      "parent_id": "n52",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 0.8
+        },
+        {
+          "topic_id": "t_security",
+          "weight": 0.2
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n54",
+      "speaker": "TRUMP",
+      "text": "I did not. I did not. I do not say that.",
+      "parent_id": "n53",
+      "topic_assignments": [
+        {
+          "topic_id": "t_character",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "character_clash",
+      "timestamp": null
+    },
+    {
+      "id": "n55",
+      "speaker": "CLINTON",
+      "text": "I think science is real. And I think it’s important that we grip this and deal with it, both at home and abroad. And here’s what we can do. We can deploy a half a billion more solar panels. We can have enough clean energy to power every home. We can build a new modern electric grid. That’s a lot of jobs; that’s a lot of new economic activity.",
+      "parent_id": "n54",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n56",
+      "speaker": "CLINTON",
+      "text": "So I’ve tried to be very specific about what we can and should do, and I am determined that we’re going to get the economy really moving again, building on the progress we’ve made over the last eight years, but never going back to what got us in trouble in the first place.",
+      "parent_id": "n55",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n57",
+      "speaker": "HOLT",
+      "text": "Mr. Trump?",
+      "parent_id": "n56",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n58",
+      "speaker": "TRUMP",
+      "text": "She talks about solar panels. We invested in a solar company, our country. That was a disaster. They lost plenty of money on that one. Now, look, I’m a great believer in all forms of energy, but we’re putting a lot of people out of work. Our energy policies are a disaster. Our country is losing so much in terms of energy, in terms of paying off our debt. You can’t do what you’re looking to do with $20 trillion in debt.",
+      "parent_id": "n57",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n59",
+      "speaker": "TRUMP",
+      "text": "The Obama administration, from the time they’ve come in, is over 230 years’ worth of debt, and he’s topped it. He’s doubled it in a course of almost eight years, seven-and-a-half years, to be semi- exact. So I will tell you this. We have to do a much better job at keeping our jobs. And we have to do a much better job at giving companies incentives to build new companies or to expand, because they’re not doing it.",
+      "parent_id": "n58",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n60",
+      "speaker": "TRUMP",
+      "text": "And all you have to do is look at Michigan and look at Ohio and look at all of these places where so many of their jobs and their companies are just leaving, they’re gone. And, Hillary, I’d just ask you this. You’ve been doing this for 30 years. Why are you just thinking about these solutions right now? For 30 years, you’ve been doing it, and now you’re just starting to think of solutions.",
+      "parent_id": "n59",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 0.5
+        },
+        {
+          "topic_id": "t_character",
+          "weight": 0.5
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n61",
+      "speaker": "CLINTON",
+      "text": "Well, actually...",
+      "parent_id": "n60",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n62",
+      "speaker": "TRUMP",
+      "text": "I will bring — excuse me. I will bring back jobs. You can’t bring back jobs.",
+      "parent_id": "n61",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n63",
+      "speaker": "CLINTON",
+      "text": "Well, actually, I have thought about this quite a bit.",
+      "parent_id": "n62",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n64",
+      "speaker": "TRUMP",
+      "text": "Yeah, for 30 years.",
+      "parent_id": "n63",
+      "topic_assignments": [
+        {
+          "topic_id": "t_character",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "character_clash",
+      "timestamp": null
+    },
+    {
+      "id": "n65",
+      "speaker": "CLINTON",
+      "text": "And I have — well, not quite that long. I think my husband did a pretty good job in the 1990s. I think a lot about what worked and how we can make it work again... million new jobs, a balanced budget...",
+      "parent_id": "n64",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n66",
+      "speaker": "TRUMP",
+      "text": "He approved NAFTA, which is the single worst trade deal ever approved in this country.",
+      "parent_id": "n65",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n67",
+      "speaker": "CLINTON",
+      "text": "Incomes went up for everybody. Manufacturing jobs went up also in the 1990s, if we’re actually going to look at the facts. When I was in the Senate, I had a number of trade deals that came before me, and I held them all to the same test. Will they create jobs in America? Will they raise incomes in America? And are they good for our national security? Some of them I voted for. The biggest one, a multinational one known as CAFTA, I voted against. And because I hold the same standards as I look at all of these trade deals.",
+      "parent_id": "n66",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 0.8
+        },
+        {
+          "topic_id": "t_economy",
+          "weight": 0.2
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n68",
+      "speaker": "CLINTON",
+      "text": "But let’s not assume that trade is the only challenge we have in the economy. I think it is a part of it, and I’ve said what I’m going to do. I’m going to have a special prosecutor. We’re going to enforce the trade deals we have, and we’re going to hold people accountable.",
+      "parent_id": "n67",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 0.5
+        },
+        {
+          "topic_id": "t_economy",
+          "weight": 0.5
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n69",
+      "speaker": "CLINTON",
+      "text": "When I was secretary of state, we actually increased American exports globally 30 percent. We increased them to China 50 percent. So I know how to really work to get new jobs and to get exports that helped to create more new jobs.",
+      "parent_id": "n68",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n70",
+      "speaker": "HOLT",
+      "text": "Very quickly...",
+      "parent_id": "n69",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n71",
+      "speaker": "TRUMP",
+      "text": "But you haven’t done it in 30 years or 26 years or any number you want to...",
+      "parent_id": "n70",
+      "topic_assignments": [
+        {
+          "topic_id": "t_character",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "character_clash",
+      "timestamp": null
+    },
+    {
+      "id": "n72",
+      "speaker": "CLINTON",
+      "text": "Well, I’ve been a senator, Donald...",
+      "parent_id": "n71",
+      "topic_assignments": [
+        {
+          "topic_id": "t_character",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "character_clash",
+      "timestamp": null
+    },
+    {
+      "id": "n73",
+      "speaker": "TRUMP",
+      "text": "You haven’t done it. You haven’t done it.",
+      "parent_id": "n72",
+      "topic_assignments": [
+        {
+          "topic_id": "t_character",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "character_clash",
+      "timestamp": null
+    },
+    {
+      "id": "n74",
+      "speaker": "CLINTON",
+      "text": "And I have been a secretary of state... and I have done a lot...",
+      "parent_id": "n73",
+      "topic_assignments": [
+        {
+          "topic_id": "t_character",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "character_clash",
+      "timestamp": null
+    },
+    {
+      "id": "n75",
+      "speaker": "TRUMP",
+      "text": "Your husband signed NAFTA, which was one of the worst things that ever happened to the manufacturing industry.",
+      "parent_id": "n74",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n76",
+      "speaker": "CLINTON",
+      "text": "Well, that’s your opinion. That is your opinion.",
+      "parent_id": "n75",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n77",
+      "speaker": "TRUMP",
+      "text": "You go to New England, you go to Ohio, Pennsylvania, you go anywhere you want, Secretary Clinton, and you will see devastation where manufacture is down 30, 40, sometimes 50 percent. NAFTA is the worst trade deal maybe ever signed anywhere, but certainly ever signed in this country.",
+      "parent_id": "n76",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n78",
+      "speaker": "TRUMP",
+      "text": "And now you want to approve Trans-Pacific Partnership. You were totally in favor of it. Then you heard what I was saying, how bad it is, and you said, I can’t win that debate. But you know that if you did win, you would approve that, and that will be almost as bad as NAFTA. Nothing will ever top NAFTA.",
+      "parent_id": "n77",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n79",
+      "speaker": "CLINTON",
+      "text": "Well, that is just not accurate. I was against it once it was finally negotiated and the terms were laid out. I wrote about that in...",
+      "parent_id": "n78",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n80",
+      "speaker": "TRUMP",
+      "text": "You called it the gold standard. You called it the gold standard of trade deals. You said it’s the finest deal you’ve ever seen.",
+      "parent_id": "n79",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n81",
+      "speaker": "CLINTON",
+      "text": "No.",
+      "parent_id": "n80",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n82",
+      "speaker": "TRUMP",
+      "text": "And then you heard what I said about it, and all of a sudden you were against it.",
+      "parent_id": "n81",
+      "topic_assignments": [
+        {
+          "topic_id": "t_character",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "character_clash",
+      "timestamp": null
+    },
+    {
+      "id": "n83",
+      "speaker": "CLINTON",
+      "text": "Well, Donald, I know you live in your own reality, but that is not the facts. The facts are — I did say I hoped it would be a good deal, but when it was negotiated... which I was not responsible for, I concluded it wasn’t. I wrote about that in my book... before you even announced.",
+      "parent_id": "n82",
+      "topic_assignments": [
+        {
+          "topic_id": "t_trade",
+          "weight": 0.8
+        },
+        {
+          "topic_id": "t_character",
+          "weight": 0.2
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n84",
+      "speaker": "TRUMP",
+      "text": "So is it President Obama’s fault? Is it President Obama’s fault? Secretary, is it President Obama’s fault? Because he’s pushing it.",
+      "parent_id": "n83",
+      "topic_assignments": [
+        {
+          "topic_id": "t_character",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "character_clash",
+      "timestamp": null
+    },
+    {
+      "id": "n85",
+      "speaker": "CLINTON",
+      "text": "Look, there are differences... there are different views about what’s good for our country, our economy, and our leadership in the world. And I think it’s important to look at what we need to do to get the economy going again. That’s why I said new jobs with rising incomes, investments, not in more tax cuts that would add $5 trillion to the debt.",
+      "parent_id": "n84",
+      "topic_assignments": [
+        {
+          "topic_id": "t_economy",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "economic_trade",
+      "timestamp": null
+    },
+    {
+      "id": "n86",
+      "speaker": "TRUMP",
+      "text": "But you have no plan.",
+      "parent_id": "n85",
+      "topic_assignments": [
+        {
+          "topic_id": "t_character",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "character_clash",
+      "timestamp": null
+    },
+    {
+      "id": "n87",
+      "speaker": "CLINTON",
+      "text": "But in — oh, but I do. In fact, I have written a book about it. It’s called “Stronger Together.” You can pick it up tomorrow at a bookstore... or at an airport near you.",
+      "parent_id": "n86",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 0.5
+        },
+        {
+          "topic_id": "t_economy",
+          "weight": 0.5
+        }
+      ],
+      "deviation_score": 0.5,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n_holt_direction_start",
+      "speaker": "HOLT",
+      "text": "Folks, we’re going to move to... We’re going to move into the next segment. We’re going to talk taxes...",
+      "parent_id": "n87",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n_holt_race_start",
+      "speaker": "HOLT",
+      "text": "And let’s start by talking about race. The share of Americans who say race relations are bad in this country is the highest it’s been in decades... So how do you heal the divide? Secretary Clinton, you get two minutes on this.",
+      "parent_id": "n_holt_direction_start",
+      "topic_assignments": [
+        {
+          "topic_id": "t_race",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n_clint_race_1",
+      "speaker": "CLINTON",
+      "text": "Well, you’re right. Race remains a significant challenge in our country. Unfortunately, race still determines too much, often determines where people live, determines what kind of education in their public schools they can get, and, yes, it determines how they’re treated in the criminal justice system.",
+      "parent_id": "n_holt_race_start",
+      "topic_assignments": [
+        {
+          "topic_id": "t_race",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n_trump_law_order",
+      "speaker": "TRUMP",
+      "text": "Well, first of all, Secretary Clinton doesn’t want to use a couple of words, and that’s law and order. And we need law and order. If we don’t have it, we’re not going to have a country.",
+      "parent_id": "n_clint_race_1",
+      "topic_assignments": [
+        {
+          "topic_id": "t_race",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n_holt_birther_prompt",
+      "speaker": "HOLT",
+      "text": "Mr. Trump, for five years, you perpetuated a false claim that the nation’s first black president was not a natural-born citizen. You questioned his legitimacy... Can you tell us what took you so long?",
+      "parent_id": "n_trump_law_order",
+      "topic_assignments": [
+        {
+          "topic_id": "t_birther",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n_trump_birther_resp",
+      "speaker": "TRUMP",
+      "text": "I’ll tell you very — well, just very simple to say. Sidney Blumenthal works for the campaign and close — very close friend of Secretary Clinton. And her campaign manager, Patti Doyle, went to — during the campaign... they were pressing it very hard. When I got involved, I didn’t fail. I got him to give the birth certificate. So I’m satisfied with it.",
+      "parent_id": "n_holt_birther_prompt",
+      "topic_assignments": [
+        {
+          "topic_id": "t_birther",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "birther_digression",
+      "timestamp": null
+    },
+    {
+      "id": "n_clint_birther_counter",
+      "speaker": "CLINTON",
+      "text": "He has really started his political activity based on this racist lie that our first black president was not an American citizen. There was absolutely no evidence for it, but he persisted, he persisted year after year...",
+      "parent_id": "n_trump_birther_resp",
+      "topic_assignments": [
+        {
+          "topic_id": "t_birther",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "birther_digression",
+      "timestamp": null
+    },
+    {
+      "id": "n_holt_cyber_start",
+      "speaker": "HOLT",
+      "text": "Our next segment is called “Securing America.” We want to start with a 21st century war happening every day in this country. Our institutions are under cyber attack... so my question is, who’s behind it? And how do we fight it?",
+      "parent_id": "n_clint_birther_counter",
+      "topic_assignments": [
+        {
+          "topic_id": "t_security",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n_trump_isis_iraq",
+      "speaker": "TRUMP",
+      "text": "Well, President Obama and Secretary Clinton created a vacuum the way they got out of Iraq... and ISIS was formed. Or, as I’ve been saying for a long time... had we taken the oil... ISIS would not have been able to form either.",
+      "parent_id": "n_holt_cyber_start",
+      "topic_assignments": [
+        {
+          "topic_id": "t_foreign",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n_clint_judgment",
+      "speaker": "CLINTON",
+      "text": "Donald supported the invasion of Iraq. That is absolutely proved over and over again. He actually advocated for the actions we took in Libya... George W. Bush made the agreement about when American troops would leave Iraq, not Barack Obama.",
+      "parent_id": "n_trump_isis_iraq",
+      "topic_assignments": [
+        {
+          "topic_id": "t_foreign",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n_trump_stamina",
+      "speaker": "TRUMP",
+      "text": "She doesn’t have the look. She doesn’t have the stamina. I said she doesn’t have the stamina. And I don’t believe she does have the stamina. To be president of this country, you need tremendous stamina.",
+      "parent_id": "n_clint_judgment",
+      "topic_assignments": [
+        {
+          "topic_id": "t_character",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "character_clash",
+      "timestamp": null
+    },
+    {
+      "id": "n_clint_machado",
+      "speaker": "CLINTON",
+      "text": "You know, he tried to switch from looks to stamina. But this is a man who has called women pigs, slobs and dogs... and one of the worst things he said was about a woman in a beauty contest... he called this woman “Miss Piggy.” Her name is Alicia Machado.",
+      "parent_id": "n_trump_stamina",
+      "topic_assignments": [
+        {
+          "topic_id": "t_character",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "character_clash",
+      "timestamp": null
+    },
+    {
+      "id": "n_final_outcome",
+      "speaker": "HOLT",
+      "text": "One of you will not win this election. So my final question to you tonight, are you willing to accept the outcome as the will of the voters?",
+      "parent_id": "n_clint_machado",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n_clint_final",
+      "speaker": "CLINTON",
+      "text": "Well, I support our democracy. And sometimes you win, sometimes you lose. But I certainly will support the outcome of this election.",
+      "parent_id": "n_final_outcome",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n_trump_final",
+      "speaker": "TRUMP",
+      "text": "Look, here’s the story. I want to make America great again. I’m going to be able to do it. I don’t believe Hillary will. The answer is, if she wins, I will absolutely support her.",
+      "parent_id": "n_clint_final",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    },
+    {
+      "id": "n_holt_goodnight",
+      "speaker": "HOLT",
+      "text": "All right. Well, that is going to do it for us. That concludes our debate for this evening, a spirit one... Good night, everyone.",
+      "parent_id": "n_trump_final",
+      "topic_assignments": [
+        {
+          "topic_id": "t_main",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main",
+      "timestamp": null
+    }
+  ],
+  "metrics": {
+    "coherence_score": 0.38
+  }
+}

@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conversation Visualiser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0e0e0f;
+    --surface: #16171a;
+    --surface2: #1e1f24;
+    --border: #2a2b32;
+    --text: #e8e6e0;
+    --text-muted: #6b6a72;
+    --text-dim: #3a3a44;
+    --accent: #c8b89a;
+    --mono: 'DM Mono', monospace;
+    --serif: 'Instrument Serif', serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Header ── */
+  header {
+    padding: 32px 48px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  header h1 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+  }
+  header span {
+    color: var(--text-muted);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── Layout ── */
+  .app {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: calc(100vh - 73px);
+  }
+
+  /* ── Input zone ── */
+  .input-zone {
+    padding: 32px 48px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .input-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .input-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  textarea {
+    flex: 1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 14px 16px;
+    resize: vertical;
+    min-height: 80px;
+    max-height: 200px;
+    transition: border-color 0.2s;
+    line-height: 1.5;
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: auto;
+  }
+  textarea:focus { outline: none; border-color: var(--accent); }
+  textarea::placeholder { color: var(--text-dim); }
+
+  .file-drop-zone {
+    flex: 1;
+    background: var(--bg);
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+    padding: 14px 16px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    min-height: 80px;
+    text-align: center;
+  }
+  .file-drop-zone:hover, .file-drop-zone.drag-over {
+    border-color: var(--accent);
+    background: #1a1a1f;
+    color: var(--text);
+  }
+  .file-drop-zone.has-file {
+    border-style: solid;
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  #fileInput { display: none; }
+
+  .input-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 10px;
+  }
+  .input-tab {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 5px 14px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: transparent;
+    transition: all 0.15s;
+    font-family: var(--mono);
+  }
+  .input-tab:first-child { border-radius: 3px 0 0 3px; }
+  .input-tab:last-child { border-radius: 0 3px 3px 0; border-left: none; }
+  .input-tab.active { background: var(--surface2); color: var(--accent); border-color: var(--accent); }
+  .char-count {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    text-align: right;
+  }
+
+  .btn {
+    background: var(--accent);
+    color: #0e0e0f;
+    border: none;
+    border-radius: 4px;
+    padding: 14px 24px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.15s, transform 0.1s;
+    align-self: flex-start;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--text-muted); opacity: 1; color: var(--text); }
+
+  .btn-row { display: flex; gap: 8px; flex-direction: column; }
+
+  /* ── Error ── */
+  .error {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: #2a1a1a;
+    border: 1px solid #5a2020;
+    border-radius: 4px;
+    color: #e07070;
+    font-size: 11px;
+    display: none;
+  }
+  .error.visible { display: block; }
+
+  /* ── Main view ── */
+  .main-view {
+    display: none;
+    padding: 0;
+  }
+  .main-view.visible { display: grid; grid-template-columns: 280px 1fr; }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    border-right: 1px solid var(--border);
+    background: var(--surface);
+    padding: 28px 24px;
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 73px - 145px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-track { background: transparent; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  /* ── Metrics ── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .metric-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px 12px;
+  }
+  .metric-val {
+    font-size: 20px;
+    font-family: var(--mono);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .metric-label {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ── Topic list ── */
+  .topic-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border: 1px solid transparent;
+  }
+  .topic-item:hover { background: var(--surface2); }
+  .topic-item.active { background: var(--surface2); border-color: var(--border); }
+  .topic-item.dimmed { opacity: 0.35; }
+
+  .topic-swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .topic-info { flex: 1; min-width: 0; }
+  .topic-name {
+    font-size: 12px;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 2px;
+  }
+  .topic-name.main::after {
+    content: ' trunk';
+    font-size: 9px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-left: 4px;
+  }
+  .topic-stats {
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  /* ── Content area ── */
+  .content {
+    padding: 28px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    min-width: 0;
+  }
+
+  /* ── Chart ── */
+  .chart-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 24px;
+  }
+  .chart-title {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .chart-title .conversation-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--accent);
+    margin-left: auto;
+  }
+  #deviationChart { max-height: 120px; }
+
+  /* ── Transcript ── */
+  .transcript-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .filter-notice {
+    font-size: 10px;
+    color: var(--text-muted);
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: none;
+  }
+  .filter-notice.visible { display: block; }
+  .filter-notice:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── Sentences ── */
+  .transcript-scroll {
+    overflow-x: auto;
+  }
+  .sentence {
+    display: grid;
+    grid-template-columns: 32px 100px 1fr 40px;
+    gap: 0 12px;
+    padding: 3px 16px;
+    border-radius: 2px;
+    margin-bottom: 0;
+    transition: background 0.15s;
+    position: relative;
+    cursor: default;
+    align-items: center;
+    min-width: max-content;
+    white-space: nowrap;
+  }
+  .sentence:hover { background: var(--surface2); }
+  .sentence.hidden { display: none; }
+  .sentence.digression-start { border-left: 2px solid; padding-left: 14px; }
+  .sentence.resolution { border-left: 2px solid #5aba8a; padding-left: 14px; }
+
+  .sentence-index {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.4;
+  }
+  .sentence-speaker {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+  }
+  .sentence-text {
+    font-family: var(--serif);
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+  .sentence-deviation {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.4;
+  }
+  .deviation-bar { display: none; }
+  .deviation-fill { display: none; }
+
+  /* ── Tooltip ── */
+  .tooltip {
+    position: fixed;
+    background: #1a1b20;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 11px;
+    color: var(--text);
+    pointer-events: none;
+    z-index: 1000;
+    max-width: 260px;
+    opacity: 0;
+    transition: opacity 0.15s;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+  .tooltip.visible { opacity: 1; }
+  .tooltip-row { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 6px; }
+  .tooltip-row:last-child { margin-bottom: 0; }
+  .tooltip-key { color: var(--text-muted); }
+  .tooltip-val { color: var(--text); font-weight: 500; }
+  .tooltip-topics { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+  .tooltip-topic-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    font-size: 10px;
+  }
+  .tooltip-swatch {
+    width: 8px; height: 8px; border-radius: 1px; flex-shrink: 0;
+  }
+
+  /* ── Empty state ── */
+  .empty-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 48px;
+    text-align: center;
+    gap: 12px;
+    color: var(--text-dim);
+  }
+  .empty-hint .big { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--text-muted); }
+
+  /* ── Scrollbar global ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+
+  /* ── View toggle ── */
+  .view-toggle {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0;
+  }
+  .view-btn {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 5px 16px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: transparent;
+    transition: all 0.15s;
+    font-family: var(--mono);
+  }
+  .view-btn:first-child { border-radius: 3px 0 0 3px; }
+  .view-btn:last-child  { border-radius: 0 3px 3px 0; border-left: none; }
+  .view-btn.active { background: var(--surface2); color: var(--accent); border-color: var(--accent); }
+
+  /* ── Git log view ── */
+  .gitlog-scroll {
+    overflow-x: auto;
+  }
+  .code-panel-scroll {
+    overflow-x: auto;
+  }
+  #mermaidContainer,
+  #gitcmdContainer {
+    display: none;
+    padding: 4px 0;
+  }
+  #mermaidContainer pre,
+  #gitcmdContainer pre {
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text);
+    white-space: pre;
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  .code-copy-btn {
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 4px 12px;
+    cursor: pointer;
+    background: transparent;
+    font-family: var(--mono);
+    transition: all 0.15s;
+  }
+  .code-copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .code-copy-btn.copied { border-color: #5aba8a; color: #5aba8a; }
+  .code-comment { color: var(--text-muted); }
+  .code-keyword { color: #5ab4e0; }
+  .code-branch  { color: #e07b54; }
+  .code-nodeid  { color: #c8b89a; }
+
+  #gitlogContainer {
+    display: none;
+    padding: 4px 0;
+  }
+  #gitlogContainer pre {
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--text-muted);
+    white-space: pre;
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  #gitlogContainer pre .gl-graph {
+    /* graph chars coloured per-branch via inline spans */
+  }
+  #gitlogContainer pre .gl-nid {
+    color: #c8b89a;
+    font-weight: 500;
+  }
+  #gitlogContainer pre .gl-speaker {
+    color: var(--text-muted);
+  }
+  #gitlogContainer pre .gl-text {
+    color: var(--text);
+  }
+  #gitlogContainer pre .gl-tag {
+    font-size: 10px;
+    padding: 0 4px;
+    border-radius: 2px;
+    margin-right: 4px;
+    opacity: 0.85;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .sentence { animation: fadeIn 0.25s ease both; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Conversation Visualiser</h1>
+  <span>v1 · structured analysis</span>
+</header>
+
+<div class="app">
+  <div class="input-zone">
+    <div class="input-tabs">
+      <button class="input-tab active" id="tabPaste" onclick="switchTab('paste')">Paste JSON</button>
+      <button class="input-tab" id="tabFile" onclick="switchTab('file')">Upload file</button>
+    </div>
+    <div class="input-row">
+      <textarea id="jsonInput" placeholder='{ "conversation": { ... }, "participants": [...], "topics": [...], "nodes": [...] }' oninput="updateCharCount()"></textarea>
+      <div class="file-drop-zone" id="dropZone"
+           onclick="document.getElementById('fileInput').click()"
+           ondragover="onDragOver(event)"
+           ondragleave="onDragLeave(event)"
+           ondrop="onDrop(event)">
+        <div>
+          <div style="margin-bottom:6px">Drop .json file here or click to browse</div>
+          <div id="fileName" style="font-size:11px; color:var(--text-dim)"></div>
+        </div>
+      </div>
+      <input type="file" id="fileInput" accept=".json,application/json" onchange="onFileSelect(event)">
+      <div class="btn-row">
+        <button class="btn" onclick="visualise()">Visualise →</button>
+        <button class="btn btn-ghost" onclick="loadSample()">Load sample</button>
+      </div>
+    </div>
+    <div class="char-count" id="charCount"></div>
+    <div class="error" id="errorBox"></div>
+  </div>
+
+  <div class="main-view" id="mainView">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div>
+        <div class="section-label">Metrics</div>
+        <div class="metrics-grid" id="metricsGrid"></div>
+      </div>
+      <div>
+        <div class="section-label">Topics — click to filter</div>
+        <div id="topicList"></div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <div class="chart-section">
+        <div class="chart-title">
+          <span>Deviation timeline</span>
+          <span class="conversation-title" id="convTitle"></span>
+        </div>
+        <canvas id="deviationChart"></canvas>
+      </div>
+
+      <div>
+        <div class="transcript-header">
+          <div class="view-toggle">
+            <button class="view-btn active" id="btnTranscript" onclick="switchView('transcript')">Transcript</button>
+            <button class="view-btn" id="btnGitlog" onclick="switchView('gitlog')">Git log</button>
+            <button class="view-btn" id="btnMermaid" onclick="switchView('mermaid')">Mermaid GitGraph</button>
+            <button class="view-btn" id="btnGitcmd" onclick="switchView('gitcmd')">Git commands</button>
+          </div>
+          <div class="filter-notice" id="filterNotice" onclick="clearFilter()">Filtered · click to clear ×</div>
+        </div>
+        <div class="transcript-scroll"><div id="transcriptContainer"></div></div>
+        <div class="gitlog-scroll"><div id="gitlogContainer"><pre id="gitlogPre"></pre></div></div>
+        <div class="code-panel-scroll"><div id="mermaidContainer"><pre id="mermaidPre"></pre></div></div>
+        <div class="code-panel-scroll"><div id="gitcmdContainer"><pre id="gitcmdPre"></pre></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-hint" id="emptyHint">
+    <div class="big">Paste your JSON above</div>
+    <div>Gemini AI Studio structured output → rendered transcript</div>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+// ── Colour palette ─────────────────────────────────────────────────────────
+const PALETTE = [
+  '#e07b54','#5ab4e0','#7bc98a','#c97bc2','#e0c45a',
+  '#5ae0cc','#e05a7b','#8a7be0','#b0c45a','#e0965a',
+  '#5ab4c9','#c9b07b','#7baae0','#c9e05a','#e07bb0'
+];
+let topicColours = {};
+let activeFilter = null;
+let chartInstance = null;
+let currentData = null;
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+function assignColours(topics) {
+  topicColours = {};
+  topics.forEach((t, i) => {
+    topicColours[t.id] = PALETTE[i % PALETTE.length];
+  });
+}
+
+function dominantTopic(node) {
+  if (!node.topic_assignments || !node.topic_assignments.length) return null;
+  return node.topic_assignments.reduce((a, b) => a.weight >= b.weight ? a : b);
+}
+
+function deviationColour(score) {
+  // 0 = green-ish, 1 = red-ish
+  const r = Math.round(80 + score * 160);
+  const g = Math.round(180 - score * 120);
+  const b = Math.round(80 + score * 20);
+  return `rgb(${r},${g},${b})`;
+}
+
+function fmt(n) { return typeof n === 'number' ? n.toFixed(2) : '—'; }
+
+// ── Visualise ──────────────────────────────────────────────────────────────
+function visualise() {
+  const raw = document.getElementById('jsonInput').value.trim();
+  const err = document.getElementById('errorBox');
+  err.classList.remove('visible');
+
+  let data;
+  try { data = JSON.parse(raw); }
+  catch(e) { showError('Invalid JSON — ' + e.message); return; }
+
+  if (!data.nodes || !data.topics || !data.conversation) {
+    showError('Missing required fields: conversation, topics, nodes');
+    return;
+  }
+
+  currentData = data;
+  activeFilter = null;
+  assignColours(data.topics);
+
+  document.getElementById('emptyHint').style.display = 'none';
+  document.getElementById('mainView').classList.add('visible');
+  document.getElementById('convTitle').textContent = data.conversation.title || '';
+
+  renderMetrics(data.metrics);
+  renderTopics(data.topics, data.nodes);
+  renderChart(data.nodes);
+  renderTranscript(data.nodes, data.topics);
+  renderGitLog(data);
+  renderMermaid(data);
+  renderGitCommands(data);
+  switchView(currentView);
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorBox');
+  el.textContent = msg;
+  el.classList.add('visible');
+}
+
+// ── Metrics ────────────────────────────────────────────────────────────────
+function renderMetrics(m) {
+  if (!m) return;
+  const grid = document.getElementById('metricsGrid');
+  const items = [
+    { val: m.total_nodes, label: 'Sentences' },
+    { val: m.total_branches, label: 'Branches' },
+    { val: fmt(m.coherence_score), label: 'Coherence' },
+    { val: m.unresolved_branches, label: 'Unresolved' },
+    { val: fmt(m.avg_deviation_score), label: 'Avg deviation' },
+  ];
+  grid.innerHTML = items.map(i => `
+    <div class="metric-card">
+      <div class="metric-val">${i.val}</div>
+      <div class="metric-label">${i.label}</div>
+    </div>
+  `).join('');
+}
+
+// ── Topics ─────────────────────────────────────────────────────────────────
+function renderTopics(topics, nodes) {
+  // Count sentences per topic (by dominant topic)
+  const counts = {};
+  topics.forEach(t => counts[t.id] = 0);
+  nodes.forEach(n => {
+    const d = dominantTopic(n);
+    if (d && counts[d.topic_id] !== undefined) counts[d.topic_id]++;
+  });
+  const total = nodes.length || 1;
+
+  const list = document.getElementById('topicList');
+  list.innerHTML = topics.map(t => {
+    const c = topicColours[t.id];
+    const cnt = counts[t.id] || 0;
+    const pct = ((cnt / total) * 100).toFixed(0);
+    return `
+      <div class="topic-item" id="ti-${t.id}" onclick="filterByTopic('${t.id}')">
+        <div class="topic-swatch" style="background:${c}"></div>
+        <div class="topic-info">
+          <div class="topic-name${t.is_main ? ' main' : ''}">${t.label}</div>
+          <div class="topic-stats">${cnt} sentence${cnt !== 1 ? 's' : ''} · ${pct}%</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ── Filter ─────────────────────────────────────────────────────────────────
+function filterByTopic(topicId) {
+  if (activeFilter === topicId) { clearFilter(); return; }
+  activeFilter = topicId;
+
+  document.querySelectorAll('.topic-item').forEach(el => {
+    const id = el.id.replace('ti-', '');
+    el.classList.toggle('active', id === topicId);
+    el.classList.toggle('dimmed', id !== topicId);
+  });
+
+  document.querySelectorAll('.sentence').forEach(el => {
+    const dominant = el.dataset.dominant;
+    el.classList.toggle('hidden', dominant !== topicId);
+  });
+
+  document.getElementById('filterNotice').classList.add('visible');
+}
+
+function clearFilter() {
+  activeFilter = null;
+  document.querySelectorAll('.topic-item').forEach(el => {
+    el.classList.remove('active', 'dimmed');
+  });
+  document.querySelectorAll('.sentence').forEach(el => {
+    el.classList.remove('hidden');
+  });
+  document.getElementById('filterNotice').classList.remove('visible');
+}
+
+// ── Chart ──────────────────────────────────────────────────────────────────
+function renderChart(nodes) {
+  const ctx = document.getElementById('deviationChart').getContext('2d');
+  if (chartInstance) chartInstance.destroy();
+
+  const labels = nodes.map((n, i) => i + 1);
+  const scores = nodes.map(n => n.deviation_score ?? 0);
+  const colours = nodes.map(n => {
+    const d = dominantTopic(n);
+    return d ? topicColours[d.topic_id] : '#3a3a44';
+  });
+
+  chartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        data: scores,
+        backgroundColor: colours.map(c => c + 'cc'),
+        borderColor: colours,
+        borderWidth: 1,
+        borderRadius: 2,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: (items) => `Sentence ${items[0].label}`,
+            label: (item) => `Deviation: ${item.raw.toFixed(3)}`
+          },
+          backgroundColor: '#1a1b20',
+          borderColor: '#2a2b32',
+          borderWidth: 1,
+          titleColor: '#c8b89a',
+          bodyColor: '#6b6a72',
+          titleFont: { family: 'DM Mono', size: 11 },
+          bodyFont: { family: 'DM Mono', size: 11 },
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: '#2a2b3220', drawTicks: false },
+          ticks: { color: '#3a3a44', font: { family: 'DM Mono', size: 9 }, maxTicksLimit: 20 },
+          border: { color: '#2a2b32' }
+        },
+        y: {
+          min: 0, max: 1,
+          grid: { color: '#2a2b3230', drawTicks: false },
+          ticks: { color: '#3a3a44', font: { family: 'DM Mono', size: 9 }, maxTicksLimit: 5 },
+          border: { color: '#2a2b32' }
+        }
+      }
+    }
+  });
+}
+
+// ── Transcript ─────────────────────────────────────────────────────────────
+function renderTranscript(nodes, topics) {
+  const topicMap = {};
+  topics.forEach(t => topicMap[t.id] = t);
+
+  const container = document.getElementById('transcriptContainer');
+  container.innerHTML = nodes.map((n, i) => {
+    const dom = dominantTopic(n);
+    const colour = dom ? topicColours[dom.topic_id] : '#3a3a44';
+    const devScore = n.deviation_score ?? 0;
+    const devPct = (devScore * 100).toFixed(0);
+    const devCol = deviationColour(devScore);
+
+    let extraClass = '';
+    if (n.is_digression_start) extraClass = ' digression-start';
+    if (n.is_resolution) extraClass = ' resolution';
+
+    // Stagger animation
+    const delay = Math.min(i * 0.02, 1);
+
+    return `
+      <div class="sentence${extraClass}"
+           data-id="${n.id}"
+           data-dominant="${dom ? dom.topic_id : ''}"
+           style="animation-delay:${delay}s; ${n.is_digression_start ? 'border-left-color:'+colour : ''}"
+           onmouseenter="showTooltip(event, '${n.id}')"
+           onmouseleave="hideTooltip()">
+        <div class="sentence-index">${i + 1}</div>
+        <div class="sentence-speaker" style="color:${colour}">${n.speaker || '—'}</div>
+        <div class="sentence-text">${escHtml(n.text || '')}</div>
+        <div class="sentence-deviation">
+          <div>${devPct}%</div>
+          <div class="deviation-bar">
+            <div class="deviation-fill" style="width:${devPct}%; background:${devCol}"></div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ── Tooltip ────────────────────────────────────────────────────────────────
+function showTooltip(e, nodeId) {
+  const data = currentData;
+  if (!data) return;
+  const node = data.nodes.find(n => n.id === nodeId);
+  if (!node) return;
+
+  const topicMap = {};
+  data.topics.forEach(t => topicMap[t.id] = t);
+
+  const topicsHtml = (node.topic_assignments || [])
+    .sort((a,b) => b.weight - a.weight)
+    .map(ta => {
+      const t = topicMap[ta.topic_id];
+      const label = t ? t.label : ta.topic_id;
+      const c = topicColours[ta.topic_id] || '#888';
+      const w = (ta.weight * 100).toFixed(0);
+      return `<div class="tooltip-topic-row">
+        <div class="tooltip-swatch" style="background:${c}"></div>
+        <span style="flex:1">${label}</span>
+        <span style="color:${c}">${w}%</span>
+      </div>`;
+    }).join('');
+
+  const flags = [];
+  if (node.is_digression_start) flags.push('digression start');
+  if (node.is_resolution) flags.push('resolution');
+
+  const tt = document.getElementById('tooltip');
+  tt.innerHTML = `
+    <div class="tooltip-row">
+      <span class="tooltip-key">id</span>
+      <span class="tooltip-val">${node.id}</span>
+    </div>
+    <div class="tooltip-row">
+      <span class="tooltip-key">branch</span>
+      <span class="tooltip-val">${node.branch || '—'}</span>
+    </div>
+    <div class="tooltip-row">
+      <span class="tooltip-key">deviation</span>
+      <span class="tooltip-val">${fmt(node.deviation_score)}</span>
+    </div>
+    ${node.timestamp ? `<div class="tooltip-row"><span class="tooltip-key">time</span><span class="tooltip-val">${node.timestamp}</span></div>` : ''}
+    ${flags.length ? `<div class="tooltip-row"><span class="tooltip-key">flags</span><span class="tooltip-val" style="color:#e07b54">${flags.join(', ')}</span></div>` : ''}
+    <div class="tooltip-topics">${topicsHtml}</div>
+  `;
+
+  positionTooltip(e, tt);
+  tt.classList.add('visible');
+}
+
+function positionTooltip(e, tt) {
+  tt.style.visibility = 'hidden';
+  tt.style.opacity = '0';
+  tt.classList.add('visible');
+  setTimeout(() => {
+    const tw = tt.offsetWidth, th = tt.offsetHeight;
+    let x = e.clientX + 16, y = e.clientY - 8;
+    if (x + tw > window.innerWidth - 16) x = e.clientX - tw - 16;
+    if (y + th > window.innerHeight - 16) y = window.innerHeight - th - 16;
+    tt.style.left = x + 'px';
+    tt.style.top = y + 'px';
+    tt.style.visibility = '';
+    tt.style.opacity = '';
+  }, 0);
+}
+
+function hideTooltip() {
+  document.getElementById('tooltip').classList.remove('visible');
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Sample data ────────────────────────────────────────────────────────────
+function loadSample() {
+  const sample = {
+    "conversation": { "id": "conv_001", "title": "Product roadmap discussion", "main_topic": "Q3 feature planning" },
+    "participants": ["Alice", "Bob", "Carol"],
+    "topics": [
+      { "id": "t1", "label": "Q3 roadmap", "description": "Core feature planning", "is_main": true },
+      { "id": "t2", "label": "Technical debt", "description": "Legacy system issues", "is_main": false },
+      { "id": "t3", "label": "Team capacity", "description": "Staffing and availability", "is_main": false },
+      { "id": "t4", "label": "Competitor analysis", "description": "Market comparison", "is_main": false }
+    ],
+    "branches": [
+      { "name": "main", "topic_id": "t1", "parent_branch": null, "fork_node_id": "n1", "resolved": true },
+      { "name": "tech-debt", "topic_id": "t2", "parent_branch": "main", "fork_node_id": "n4", "merge_node_id": "n7", "resolved": true },
+      { "name": "capacity", "topic_id": "t3", "parent_branch": "main", "fork_node_id": "n9", "resolved": false }
+    ],
+    "nodes": [
+      { "id": "n1", "speaker": "Alice", "text": "Let's go through the Q3 roadmap and prioritise what we're actually shipping.", "timestamp": "00:00", "branch": "main", "parent_id": null, "topic_assignments": [{"topic_id":"t1","weight":1.0}], "deviation_score": 0.0, "is_digression_start": false, "is_resolution": false },
+      { "id": "n2", "speaker": "Bob", "text": "I've got the feature list here — authentication overhaul, the new dashboard, and the export pipeline.", "timestamp": "00:18", "branch": "main", "parent_id": "n1", "topic_assignments": [{"topic_id":"t1","weight":0.9},{"topic_id":"t2","weight":0.1}], "deviation_score": 0.05, "is_digression_start": false, "is_resolution": false },
+      { "id": "n3", "speaker": "Carol", "text": "Before we dive in — are we still blocked by the auth service migration?", "timestamp": "00:31", "branch": "main", "parent_id": "n2", "topic_assignments": [{"topic_id":"t1","weight":0.4},{"topic_id":"t2","weight":0.6}], "deviation_score": 0.35, "is_digression_start": false, "is_resolution": false },
+      { "id": "n4", "speaker": "Bob", "text": "Yeah, that's actually a significant problem. The legacy auth layer is tightly coupled to the new feature work.", "timestamp": "00:45", "branch": "tech-debt", "parent_id": "n3", "topic_assignments": [{"topic_id":"t2","weight":0.85},{"topic_id":"t1","weight":0.15}], "deviation_score": 0.68, "is_digression_start": true, "is_resolution": false },
+      { "id": "n5", "speaker": "Alice", "text": "How long would it take to properly decouple it?", "timestamp": "01:02", "branch": "tech-debt", "parent_id": "n4", "topic_assignments": [{"topic_id":"t2","weight":1.0}], "deviation_score": 0.75, "is_digression_start": false, "is_resolution": false },
+      { "id": "n6", "speaker": "Bob", "text": "Realistically, two weeks of focused engineering time.", "timestamp": "01:10", "branch": "tech-debt", "parent_id": "n5", "topic_assignments": [{"topic_id":"t2","weight":0.7},{"topic_id":"t3","weight":0.3}], "deviation_score": 0.62, "is_digression_start": false, "is_resolution": false },
+      { "id": "n7", "speaker": "Carol", "text": "OK so we schedule that as a prerequisite. That resolves the auth blocker — let's move on.", "timestamp": "01:25", "branch": "main", "parent_id": "n6", "topic_assignments": [{"topic_id":"t1","weight":0.6},{"topic_id":"t2","weight":0.4}], "deviation_score": 0.22, "is_digression_start": false, "is_resolution": true },
+      { "id": "n8", "speaker": "Alice", "text": "Right. So for the dashboard — what's the scope we're committing to?", "timestamp": "01:38", "branch": "main", "parent_id": "n7", "topic_assignments": [{"topic_id":"t1","weight":1.0}], "deviation_score": 0.04, "is_digression_start": false, "is_resolution": false },
+      { "id": "n9", "speaker": "Bob", "text": "That depends a lot on who's available. We might lose two engineers to the platform team in August.", "timestamp": "01:52", "branch": "capacity", "parent_id": "n8", "topic_assignments": [{"topic_id":"t3","weight":0.8},{"topic_id":"t1","weight":0.2}], "deviation_score": 0.58, "is_digression_start": true, "is_resolution": false },
+      { "id": "n10", "speaker": "Carol", "text": "Has that been confirmed? I haven't seen anything official.", "timestamp": "02:01", "branch": "capacity", "parent_id": "n9", "topic_assignments": [{"topic_id":"t3","weight":1.0}], "deviation_score": 0.72, "is_digression_start": false, "is_resolution": false },
+      { "id": "n11", "speaker": "Bob", "text": "Not confirmed, but likely. We should plan for reduced capacity just in case.", "timestamp": "02:12", "branch": "capacity", "parent_id": "n10", "topic_assignments": [{"topic_id":"t3","weight":0.9},{"topic_id":"t1","weight":0.1}], "deviation_score": 0.65, "is_digression_start": false, "is_resolution": false },
+      { "id": "n12", "speaker": "Alice", "text": "We should also look at what competitors shipped last quarter — might affect our priorities.", "timestamp": "02:28", "branch": "capacity", "parent_id": "n11", "topic_assignments": [{"topic_id":"t4","weight":0.7},{"topic_id":"t1","weight":0.3}], "deviation_score": 0.55, "is_digression_start": false, "is_resolution": false },
+      { "id": "n13", "speaker": "Carol", "text": "Can we park competitor analysis for a separate session and stay focused on the roadmap today?", "timestamp": "02:44", "branch": "main", "parent_id": "n12", "topic_assignments": [{"topic_id":"t1","weight":0.8},{"topic_id":"t4","weight":0.2}], "deviation_score": 0.15, "is_digression_start": false, "is_resolution": false },
+      { "id": "n14", "speaker": "Alice", "text": "Agreed. Given the capacity uncertainty, let's commit to a reduced dashboard scope with optional stretch goals.", "timestamp": "03:00", "branch": "main", "parent_id": "n13", "topic_assignments": [{"topic_id":"t1","weight":0.95},{"topic_id":"t3","weight":0.05}], "deviation_score": 0.08, "is_digression_start": false, "is_resolution": false }
+    ],
+    "metrics": { "total_nodes": 14, "total_branches": 3, "coherence_score": 0.61, "unresolved_branches": 1, "avg_deviation_score": 0.36 }
+  };
+
+  document.getElementById('jsonInput').value = JSON.stringify(sample, null, 2);
+  switchTab('paste');
+  updateCharCount();
+  visualise();
+}
+
+// ── Tab switching ──────────────────────────────────────────────────────────
+function switchTab(tab) {
+  const isPaste = tab === 'paste';
+  document.getElementById('tabPaste').classList.toggle('active', isPaste);
+  document.getElementById('tabFile').classList.toggle('active', !isPaste);
+  document.getElementById('jsonInput').style.display = isPaste ? '' : 'none';
+  document.getElementById('dropZone').style.display = isPaste ? 'none' : 'flex';
+  if (isPaste) updateCharCount();
+}
+
+// ── Character count ────────────────────────────────────────────────────────
+function updateCharCount() {
+  const len = document.getElementById('jsonInput').value.length;
+  const el = document.getElementById('charCount');
+  if (len === 0) { el.textContent = ''; return; }
+  const kb = (len / 1024).toFixed(1);
+  el.textContent = `${len.toLocaleString()} chars · ${kb} KB`;
+}
+
+// ── File handling ──────────────────────────────────────────────────────────
+function onFileSelect(e) {
+  const file = e.target.files[0];
+  if (file) loadFile(file);
+}
+
+function onDragOver(e) {
+  e.preventDefault();
+  document.getElementById('dropZone').classList.add('drag-over');
+}
+
+function onDragLeave(e) {
+  document.getElementById('dropZone').classList.remove('drag-over');
+}
+
+function onDrop(e) {
+  e.preventDefault();
+  document.getElementById('dropZone').classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) loadFile(file);
+}
+
+function loadFile(file) {
+  const dz = document.getElementById('dropZone');
+  const fn = document.getElementById('fileName');
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const content = e.target.result;
+    // Store in the textarea (hidden) so visualise() can read it
+    document.getElementById('jsonInput').value = content;
+    dz.classList.add('has-file');
+    const kb = (content.length / 1024).toFixed(1);
+    fn.textContent = `${file.name}  ·  ${kb} KB`;
+    updateCharCount();
+  };
+  reader.onerror = function() {
+    showError('Could not read file: ' + file.name);
+  };
+  reader.readAsText(file, 'UTF-8');
+}
+
+// Initialise tab state
+switchTab('paste');
+
+// ── View toggle ────────────────────────────────────────────────────────────
+let currentView = 'transcript';
+
+function switchView(view) {
+  currentView = view;
+  const views = ['transcript','gitlog','mermaid','gitcmd'];
+  views.forEach(v => {
+    document.getElementById('btn' + v.charAt(0).toUpperCase() + v.slice(1))
+      ?.classList.toggle('active', v === view);
+  });
+  document.getElementById('transcriptContainer').parentElement.style.display = view === 'transcript' ? '' : 'none';
+  document.getElementById('gitlogContainer').style.display    = view === 'gitlog'    ? 'block' : 'none';
+  document.getElementById('mermaidContainer').style.display   = view === 'mermaid'   ? 'block' : 'none';
+  document.getElementById('gitcmdContainer').style.display    = view === 'gitcmd'    ? 'block' : 'none';
+  if (view !== 'transcript') document.getElementById('filterNotice').classList.remove('visible');
+}
+
+// ── Git log renderer ───────────────────────────────────────────────────────
+function renderGitLog(data) {
+  const { nodes, branches, topics } = data;
+
+  // Build branch-order list: main first, then others in fork order
+  const branchOrder = [];
+  const branchMap = {};
+  branches.forEach(b => { branchMap[b.name] = b; });
+
+  // BFS from main to get stable lane order
+  const seen = new Set();
+  const queue = ['main'];
+  while (queue.length) {
+    const name = queue.shift();
+    if (seen.has(name)) continue;
+    seen.add(name);
+    branchOrder.push(name);
+    // find children in fork order
+    nodes.forEach(n => {
+      if (n.is_digression_start && n.branch !== 'main') {
+        const b = branchMap[n.branch];
+        if (b && b.parent_branch === name && !seen.has(n.branch)) {
+          queue.push(n.branch);
+        }
+      }
+    });
+  }
+  // catch any branch not yet in order
+  branches.forEach(b => { if (!seen.has(b.name)) branchOrder.push(b.name); });
+
+  const laneOf = {};
+  branchOrder.forEach((name, i) => { laneOf[name] = i; });
+  const numLanes = branchOrder.length;
+
+  // Which branches are "open" (started but not yet merged) at each node
+  // We need to track open set as we walk nodes
+  const openBranches = new Set(['main']);
+
+  // Build node lookup
+  const nodeMap = {};
+  nodes.forEach(n => { nodeMap[n.id] = n; });
+
+  // branch colours via topic
+  const branchColour = {};
+  branches.forEach(b => {
+    const topic = topics.find(t => t.id === b.topic_id);
+    const idx = topics.indexOf(topic);
+    branchColour[b.name] = PALETTE[idx % PALETTE.length] || '#6b6a72';
+  });
+
+  // Helper: coloured span
+  function cs(text, colour) {
+    return `<span style="color:${colour}">${text}</span>`;
+  }
+
+  // Helper: build the graph prefix for a row
+  // activeLanes = set of branch names currently open
+  // nodeBranch = the branch this commit is on
+  // forkBranch = branch being forked off (if any)
+  // mergeBranch = branch being merged in (if any)
+  function buildGraphCols(activeLanes, nodeBranch, forkBranch, mergeBranch) {
+    // Returns array of per-lane strings (each 2 chars wide: char + space)
+    const cols = [];
+    const maxLane = Math.max(...[...activeLanes].map(b => laneOf[b]), laneOf[nodeBranch] || 0);
+
+    for (let i = 0; i <= maxLane; i++) {
+      const bname = branchOrder[i];
+      const col   = branchColour[bname] || '#6b6a72';
+
+      if (bname === nodeBranch) {
+        cols.push(cs('* ', col));
+      } else if (bname === forkBranch) {
+        cols.push(cs('| ', col));
+      } else if (activeLanes.has(bname)) {
+        cols.push(cs('| ', col));
+      } else {
+        cols.push('  ');
+      }
+    }
+    return cols.join('');
+  }
+
+  // Walk nodes and emit lines
+  const lines = [];
+
+  nodes.forEach((node, idx) => {
+    const branch    = node.branch || 'main';
+    const branchCol = branchColour[branch] || '#6b6a72';
+    const bdata     = branchMap[branch];
+
+    // Detect fork: this node is flagged digression_start OR it's the first node on a non-main branch
+    const isForkNode = node.is_digression_start ||
+      (bdata && bdata.fork_node_id === node.id);
+
+    // Detect merge/resolution
+    const isMergeNode = node.is_resolution ||
+      branches.some(b => b.merge_node_id === node.id);
+
+    // Open this branch if not already open
+    if (!openBranches.has(branch)) openBranches.add(branch);
+
+    // ── Fork connector row ──
+    if (isForkNode && branch !== 'main') {
+      const parentBranch = bdata ? (bdata.parent_branch || 'main') : 'main';
+      const parentLane   = laneOf[parentBranch] ?? 0;
+      const myLane       = laneOf[branch] ?? 1;
+
+      let forkLine = '';
+      for (let i = 0; i <= Math.max(parentLane, myLane); i++) {
+        const bname = branchOrder[i];
+        const col   = branchColour[bname] || '#6b6a72';
+        if (i === parentLane) {
+          forkLine += cs('|' + '\\', col) + ' ';
+        } else if (i === myLane && i !== parentLane) {
+          forkLine += '';
+        } else if (openBranches.has(bname) && i < parentLane) {
+          forkLine += cs('| ', col);
+        } else {
+          forkLine += '  ';
+        }
+      }
+      lines.push(`<span class="gl-graph">${forkLine}</span>`);
+    }
+
+    // ── Commit row ──
+    const maxLane = Math.max(...[...openBranches].map(b => laneOf[b] ?? 0));
+    let graphPart = '';
+    for (let i = 0; i <= maxLane; i++) {
+      const bname = branchOrder[i];
+      const col   = branchColour[bname] || '#6b6a72';
+      if (bname === branch) {
+        // star — special markers for digression start / resolution
+        const star = isForkNode ? cs('*', col) : isMergeNode ? cs('*', '#5aba8a') : cs('*', col);
+        graphPart += star + ' ';
+      } else if (openBranches.has(bname)) {
+        graphPart += cs('| ', col);
+      } else {
+        graphPart += '  ';
+      }
+    }
+
+    // Tags
+    let tags = '';
+    if (isForkNode)  tags += `<span class="gl-tag" style="background:${branchCol}22;color:${branchCol}">digression</span>`;
+    if (isMergeNode) tags += `<span class="gl-tag" style="background:#5aba8a22;color:#5aba8a">resolution</span>`;
+
+    const nid     = node.id.padEnd(5);
+    const speaker = (node.speaker || '').padEnd(12);
+    const text    = escHtml(node.text || '');
+
+    const line = `<span class="gl-graph">${graphPart}</span>${tags}<span class="gl-nid">${nid}</span>  <span class="gl-speaker">${speaker}</span>  <span class="gl-text">${text}</span>`;
+    lines.push(line);
+
+    // ── Merge connector row ──
+    if (isMergeNode && branch !== 'main') {
+      const parentBranch = bdata ? (bdata.parent_branch || 'main') : 'main';
+      const parentLane   = laneOf[parentBranch] ?? 0;
+      const myLane       = laneOf[branch] ?? 1;
+
+      let mergeLine = '';
+      for (let i = 0; i <= Math.max(parentLane, myLane); i++) {
+        const bname = branchOrder[i];
+        const col   = branchColour[bname] || '#6b6a72';
+        if (i === parentLane) {
+          mergeLine += cs('|/', col) + ' ';
+        } else if (openBranches.has(bname) && i < parentLane) {
+          mergeLine += cs('| ', col);
+        } else {
+          mergeLine += '  ';
+        }
+      }
+      lines.push(`<span class="gl-graph">${mergeLine}</span>`);
+
+      // Close the branch after merge
+      openBranches.delete(branch);
+    }
+  });
+
+  document.getElementById('gitlogPre').innerHTML = lines.join('\n');
+}
+
+
+
+// ── Mermaid GitGraph renderer ──────────────────────────────────────────────
+function renderMermaid(data) {
+  const { nodes, branches, topics, conversation } = data;
+  const branchMap = {};
+  branches.forEach(b => { branchMap[b.name] = b; });
+
+  function safeName(name) { return name.replace(/[^a-zA-Z0-9_]/g, '_'); }
+
+  const mergeAt = {};
+  branches.forEach(b => {
+    if (b.merge_node_id) {
+      mergeAt[b.merge_node_id] = mergeAt[b.merge_node_id] || [];
+      mergeAt[b.merge_node_id].push(b.name);
+    }
+  });
+
+  const lines = ['---', 'config:', '  logLevel: debug', '  theme: base', '---', 'gitGraph TB:'];
+  let currentBranch = 'main';
+  const declared = new Set(['main']);
+
+  nodes.forEach(node => {
+    const nodeBranch = node.branch || 'main';
+    if (nodeBranch !== currentBranch) {
+      if (!declared.has(nodeBranch)) {
+        const bdata = branchMap[nodeBranch];
+        const parent = bdata ? (bdata.parent_branch || 'main') : 'main';
+        if (currentBranch !== parent) {
+          lines.push('  checkout ' + safeName(parent));
+          currentBranch = parent;
+        }
+        lines.push('  branch ' + safeName(nodeBranch));
+        declared.add(nodeBranch);
+        currentBranch = nodeBranch;
+      } else {
+        lines.push('  checkout ' + safeName(nodeBranch));
+        currentBranch = nodeBranch;
+      }
+    }
+    const type = node.is_resolution ? ' type: HIGHLIGHT' : node.is_digression_start ? ' type: REVERSE' : '';
+    lines.push('  commit id: "' + node.id + '"' + type);
+    if (mergeAt[node.id]) {
+      mergeAt[node.id].forEach(mb => {
+        const bdata = branchMap[mb];
+        const target = bdata ? (bdata.parent_branch || 'main') : 'main';
+        lines.push('  checkout ' + safeName(target));
+        lines.push('  merge ' + safeName(mb));
+        currentBranch = target;
+      });
+    }
+  });
+
+  const mermaidCode = lines.join('\n');
+  const pre = document.getElementById('mermaidPre');
+  const btn = '<button class="code-copy-btn" data-target="mermaidPre" onclick="copyCode(this)">Copy to clipboard</button>';
+  pre.innerHTML = btn + '\n' + escHtml(mermaidCode);
+  pre.dataset.raw = mermaidCode;
+}
+
+// ── Git commands renderer ──────────────────────────────────────────────────
+function renderGitCommands(data) {
+  const { nodes, branches, conversation } = data;
+  const branchMap = {};
+  branches.forEach(b => { branchMap[b.name] = b; });
+
+  function safeName(name) { return name.replace(/[^a-zA-Z0-9_\-]/g, '-'); }
+  function safeMsg(text) { return (text || '').slice(0, 72).replace(/'/g, "'\\''"); }
+
+  const mergeAt = {};
+  branches.forEach(b => {
+    if (b.merge_node_id) {
+      mergeAt[b.merge_node_id] = mergeAt[b.merge_node_id] || [];
+      mergeAt[b.merge_node_id].push(b.name);
+    }
+  });
+
+  const repoName = (conversation.id || 'conversation').replace(/[^a-zA-Z0-9_\-]/g, '-');
+  const out = [];
+  out.push('# ' + (conversation.title || repoName));
+  out.push('# Generated git commands — run in your terminal');
+  out.push('');
+  out.push('mkdir ' + repoName + ' && cd ' + repoName);
+  out.push('git init');
+  out.push('git checkout -b main');
+  out.push('');
+
+  let currentBranch = 'main';
+  const created = new Set(['main']);
+
+  nodes.forEach(node => {
+    const nb = node.branch || 'main';
+    const safe = safeName(nb);
+    if (nb !== currentBranch) {
+      if (!created.has(nb)) {
+        const bdata = branchMap[nb];
+        const parent = bdata ? (bdata.parent_branch || 'main') : 'main';
+        const safeParent = safeName(parent);
+        if (currentBranch !== parent) {
+          out.push('git checkout ' + safeParent);
+          currentBranch = parent;
+        }
+        out.push('git checkout -b ' + safe);
+        created.add(nb);
+      } else {
+        out.push('git checkout ' + safe);
+      }
+      currentBranch = nb;
+      out.push('');
+    }
+    const msg = node.id + ' ' + (node.speaker || '') + ': ' + safeMsg(node.text);
+    out.push("echo '" + node.id + "' >> transcript.txt");
+    out.push('git add transcript.txt');
+    out.push("git commit -m '" + msg + "'");
+    if (mergeAt[node.id]) {
+      mergeAt[node.id].forEach(mb => {
+        const bdata = branchMap[mb];
+        const target = safeName(bdata ? (bdata.parent_branch || 'main') : 'main');
+        out.push('');
+        out.push('git checkout ' + target);
+        out.push("git merge --no-ff " + safeName(mb) + " -m 'Merge " + safeName(mb) + " into " + target + "'");
+        currentBranch = bdata ? (bdata.parent_branch || 'main') : 'main';
+      });
+      out.push('');
+    }
+  });
+
+  out.push('');
+  out.push('# Done — view with:');
+  out.push('git log --oneline --graph --all');
+
+  const raw = out.join('\n');
+
+  const highlighted = out.map(line => {
+    const e = escHtml(line);
+    if (line.startsWith('#')) return '<span class="code-comment">' + e + '</span>';
+    if (/^git checkout -b /.test(line)) return '<span class="code-keyword">git checkout -b</span> <span class="code-branch">' + escHtml(line.slice(16)) + '</span>';
+    if (/^git checkout /.test(line))    return '<span class="code-keyword">git checkout</span> <span class="code-branch">' + escHtml(line.slice(13)) + '</span>';
+    if (/^git commit/.test(line))       return '<span class="code-keyword">git commit</span>' + escHtml(line.slice(10));
+    if (/^git merge/.test(line))        return '<span class="code-keyword">git merge</span>' + escHtml(line.slice(9));
+    if (/^git /.test(line))             return '<span class="code-keyword">git</span> ' + escHtml(line.slice(4));
+    if (/^echo /.test(line))            return '<span class="code-comment">' + e + '</span>';
+    return e;
+  }).join('\n');
+
+  const pre = document.getElementById('gitcmdPre');
+  const btn = '<button class="code-copy-btn" data-target="gitcmdPre" onclick="copyCode(this)">Copy to clipboard</button>';
+  pre.innerHTML = btn + '\n' + highlighted;
+  pre.dataset.raw = raw;
+}
+
+// ── Copy helper ────────────────────────────────────────────────────────────
+function copyCode(btn) {
+  const targetId = btn.dataset.target;
+  const pre = document.getElementById(targetId);
+  const text = pre.dataset.raw || pre.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy to clipboard';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+
+</script>

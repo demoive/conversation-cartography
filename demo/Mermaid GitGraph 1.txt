@@ -1,0 +1,22 @@
+---
+config:
+  logLevel: debug
+  theme: base
+---
+gitGraph TB:
+    commit id: "[MIKE] Hello. My name is Mike"
+    commit id: "[EMILY] Nice to meet you, Mike."
+    commit id: "[EMILY] My name is Emily."
+    commit id: "[MIKE] Emily is a nice name."
+    branch "weather"
+    commit id: "[MIKE] What do you think of the weather, Emily?"
+    commit id: "[EMILY] I like rain"
+    branch "running for sport"
+    commit id: "[EMILY] I went running yesterday and got my shows muddy."
+    branch "kid mud"
+    commit id: "[MIKE] My kid loves to play in the mud."   
+    checkout "weather"
+    commit id: "[MIKE] I hate rain."
+    checkout main
+    merge "weather"
+    commit id: "[MIKE] Bye, nice to meet you!"

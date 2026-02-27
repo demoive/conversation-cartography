@@ -1,0 +1,255 @@
+{
+  "runSettings": {
+    "temperature": 0.3,
+    "model": "models/gemini-3-flash-preview",
+    "topP": 0.95,
+    "topK": 64,
+    "maxOutputTokens": 65536,
+    "safetySettings": [{
+      "category": "HARM_CATEGORY_HARASSMENT",
+      "threshold": "OFF"
+    }, {
+      "category": "HARM_CATEGORY_HATE_SPEECH",
+      "threshold": "OFF"
+    }, {
+      "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+      "threshold": "OFF"
+    }, {
+      "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+      "threshold": "OFF"
+    }],
+    "responseMimeType": "application/json",
+    "enableCodeExecution": false,
+    "responseSchema": {
+      "type": "OBJECT",
+      "properties": {
+        "conversation": {
+          "type": "OBJECT",
+          "properties": {
+            "id": {
+              "type": "STRING"
+            },
+            "title": {
+              "type": "STRING"
+            },
+            "main_topic": {
+              "type": "STRING"
+            }
+          },
+          "required": ["id", "title", "main_topic"]
+        },
+        "participants": {
+          "type": "ARRAY",
+          "items": {
+            "type": "STRING"
+          }
+        },
+        "topics": {
+          "type": "ARRAY",
+          "items": {
+            "type": "OBJECT",
+            "properties": {
+              "id": {
+                "type": "STRING"
+              },
+              "label": {
+                "type": "STRING"
+              },
+              "description": {
+                "type": "STRING"
+              },
+              "is_main": {
+                "type": "BOOLEAN"
+              }
+            },
+            "required": ["id", "label", "is_main"]
+          }
+        },
+        "branches": {
+          "type": "ARRAY",
+          "items": {
+            "type": "OBJECT",
+            "properties": {
+              "name": {
+                "type": "STRING"
+              },
+              "topic_id": {
+                "type": "STRING"
+              },
+              "parent_branch": {
+                "type": "STRING"
+              },
+              "fork_node_id": {
+                "type": "STRING"
+              },
+              "merge_node_id": {
+                "type": "STRING"
+              },
+              "resolved": {
+                "type": "BOOLEAN"
+              }
+            },
+            "required": ["name", "topic_id", "parent_branch", "fork_node_id", "resolved"]
+          }
+        },
+        "nodes": {
+          "type": "ARRAY",
+          "items": {
+            "type": "OBJECT",
+            "properties": {
+              "id": {
+                "type": "STRING"
+              },
+              "speaker": {
+                "type": "STRING"
+              },
+              "text": {
+                "type": "STRING"
+              },
+              "timestamp": {
+                "type": "STRING"
+              },
+              "branch": {
+                "type": "STRING"
+              },
+              "parent_id": {
+                "type": "STRING"
+              },
+              "topic_assignments": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "OBJECT",
+                  "properties": {
+                    "topic_id": {
+                      "type": "STRING"
+                    },
+                    "weight": {
+                      "type": "NUMBER"
+                    }
+                  },
+                  "required": ["topic_id", "weight"]
+                }
+              },
+              "deviation_score": {
+                "type": "NUMBER"
+              },
+              "is_digression_start": {
+                "type": "BOOLEAN"
+              },
+              "is_resolution": {
+                "type": "BOOLEAN"
+              }
+            },
+            "required": ["id", "speaker", "text", "branch", "parent_id", "topic_assignments", "deviation_score", "is_digression_start", "is_resolution"]
+          }
+        },
+        "metrics": {
+          "type": "OBJECT",
+          "properties": {
+            "total_nodes": {
+              "type": "INTEGER"
+            },
+            "total_branches": {
+              "type": "INTEGER"
+            },
+            "coherence_score": {
+              "type": "NUMBER"
+            },
+            "unresolved_branches": {
+              "type": "INTEGER"
+            },
+            "avg_deviation_score": {
+              "type": "NUMBER"
+            }
+          },
+          "required": ["total_nodes", "total_branches", "coherence_score", "unresolved_branches", "avg_deviation_score"]
+        }
+      },
+      "required": ["conversation", "participants", "topics", "branches", "nodes", "metrics"]
+    },
+    "enableSearchAsATool": false,
+    "enableBrowseAsATool": false,
+    "enableAutoFunctionResponse": false,
+    "thinkingBudget": -1,
+    "outputResolution": "1K",
+    "thinkingLevel": "THINKING_HIGH"
+  },
+  "systemInstruction": {
+    "text": "You are a conversation structure analyst. You process transcripts linearly, building a structured JSON graph of how dialogue flows — which topics are introduced, when the conversation drifts, and whether it returns.\n\n## Processing Model\n\nWork through the transcript from start to finish, one utterance at a time. As you go:\n\n- Add each utterance as a node\n- Assign it to the current branch\n- Add new topics to the topics list as they emerge — you do not need to know all topics upfront\n- Open a new branch when a meaningful topic shift occurs\n- Close a branch (set merge_node_id) when the conversation returns to a parent topic\n\nAt the end, compute the metrics and fill in the conversation summary.\n\n## Node Rules\n\nEach utterance becomes one node. Do not merge, summarise, or skip any utterance. Every word in the transcript must appear in a node\u0027s text field.\n\n**parent_id:** null for the first node only. For all others, the id of the immediately preceding node regardless of branch.\n\n**topic_assignments:** weighted array summing to 1.0. A purely on-topic utterance gets a single entry at weight 1.0. A transitional utterance splits the weight across two topics.\n\n**deviation_score:** 1.0 minus the weight given to the main topic. On-topic \u003d 0.0, fully off-topic \u003d 1.0.\n\n**is_digression_start:** true only on the first node of a new non-main branch.\n\n**is_resolution:** true when the conversation explicitly returns to a parent branch topic.\n\n## Branch Rules\n\nA branch represents a sustained topic arc. Open a new branch only when a topic shift spans more than one utterance. A single aside stays on the current branch with a mixed topic_assignment.\n\nThe \"main\" branch always exists with parent_branch set to an empty string. All other branches must reference the branch they forked from in parent_branch, and the node id where they forked in fork_node_id.\n\nSet merge_node_id to the node id where the conversation returned to the parent branch, or leave it null if the digression was never resolved. Set resolved to true only when merge_node_id is not null.\n\n## Topic Rules\n\nOne topic must have is_main set to true. Topics are discovered incrementally — add them as they appear. It is valid to have many topics; do not force unrelated subjects into the same topic entry.\n\n## Final Pass\n\nAfter all nodes are written, complete the following:\n\n- conversation: set id, title (short description), and main_topic (one sentence)\n- participants: list all speakers found in the transcript\n- metrics: count total_nodes and total_branches, count unresolved_branches, compute avg_deviation_score as the mean of all node deviation scores, compute coherence_score as 1.0 minus avg_deviation_score"
+  },
+  "chunkedPrompt": {
+    "chunks": [{
+      "text": "**Initiating Conversation Mapping**\n\nI\u0027m starting to map the conversation flow of the Sam Harris, Ben Shapiro debate moderated by Bari Weiss. My initial focus is on structuring the introduction by Bari Weiss into a JSON graph to understand the context and setup for the discussion regarding the 2024 US Presidential Election (Harris vs. Trump).\n\n\n**Analyzing Initial Propositions**\n\nI\u0027ve moved past the initial setup and am now dissecting the opening arguments from both sides. I\u0027m focusing on their core justifications for supporting either Harris or Trump. The debate\u0027s early focus on character versus policy is fascinating. I\u0027m noting the immediate clash regarding Trump\u0027s alleged disqualification based on character and divisiveness, versus his prior policy accomplishments, the system and Trump as a coronor. I\u0027m also capturing the core divergence on fascism and January 6th.\n\n\n**Deconstructing Further Arguments**\n\nI\u0027m now diving into the specifics. I\u0027m noting the debate around Biden\u0027s fitness and Harris\u0027s competence, with Sam defending the distinction between campaigning and governing. Ben\u0027s view on Trump\u0027s tariff proposals as leverage is also fascinating, and I\u0027m comparing it to Sam\u0027s citing of economists\u0027 warnings. I\u0027m outlining immigration, with Sam\u0027s concerns about mass deportations, versus Ben\u0027s view of a criminal-focused policy, which can be linked to Trump\u0027s first-term policies. I am also capturing the closing arguments and Bari\u0027s conclusion.\n\n\n**Structuring Debate Components**\n\nI\u0027m now focusing on structuring the debate\u0027s core components as a map. I\u0027ve begun organizing the conversation into branches and nodes, tracking key arguments and their offshoots. I am noting the division into branches such as Trump\u0027s character, policy, fascism, foreign policy, Biden\u0027s health, economy, and immigration. I\u0027m also starting to calculate metrics like total nodes and branches. Finally, I\u0027m documenting the participants and main topics.\n\n\n**Mapping Debate Structure**\n\nI\u0027m now refining the debate\u0027s structure, categorizing key arguments under specific topics and branches. This involves mapping topics like fascism, foreign policy, and economic issues into clearly defined branches, with nodes representing distinct exchanges within the debate. I\u0027m focusing on creating a complete and easily navigable map of the core components.\n\n\n**Defining Debate Framework**\n\nI\u0027m now establishing explicit rules for structuring the debate\u0027s components. Each utterance is becoming a node, with new branches created for topic shifts. I\u0027m focusing on ensuring `parent_id` is strictly the previous node, calculating deviation scores accurately, and correctly identifying the start of digressions. The initial node count is now documented up to node 21, including the progression of arguments.\n\n\n**Tracking Argument Progression**\n\nI\u0027ve been working on integrating new arguments into the existing structure, specifically from node 22 to 50, and am charting out the arguments. I\u0027m focusing on the interplay between Ben and Sam and evaluating the arguments. I\u0027m identifying which arguments are most compelling, and which are the weakest. I\u0027m also ensuring the correct `parent_id` is linked to capture each flow. I\u0027m tracking the transition between fascism, foreign policy, and individual candidates.\n\n\n**Charting New Arguments**\n\nI\u0027m now integrating arguments from node 52 to 81, focusing on the discussion\u0027s flow. There\u0027s a fascinating exchange on Ben\u0027s perceived \"lies,\" leading into an analysis of golf analogies, the Georgia call, and accusations of \"word salad.\" I\u0027m also capturing the evolution towards discussions on antisemitism and foreign policy, particularly concerning Israel and Ukraine. I\u0027m noting the specific arguments and their transitions, including the identification of \"fascists in Trumpistan\" and comments regarding Muslim voters. I\u0027m still ensuring the `parent_id` is correct.\n\n\n**Integrating Final Arguments**\n\nI\u0027m now integrating the final arguments from nodes 82 to 111 into the conversation map. The conversation has now touched on topics such as the influence of foreign policy, including discussions of Pax Americana and Vance, with analyses of security industries. I\u0027m focusing on the interplay between Ben\u0027s views on interests versus democracy, and Sam\u0027s contrasting perspectives. The argument transition focuses on immigration and moral obligations.\n\n\n**Concluding Debate Analysis**\n\nI\u0027ve completed the integration of the final segments, including the closing remarks and farewells. I\u0027ve successfully finalized the entire conversation map, assigning appropriate IDs to the topics and branches, and calculating total nodes and branches. I\u0027ve also calculated that the average deviation is 0.15, for a coherence score of 0.85, indicating a high degree of structural coherence in the debate.\n\n\n**Refining JSON Output**\n\nI\u0027m now focusing on refining the JSON output, particularly the structure to accurately represent the debate. I\u0027m focusing on ensuring data integrity across the key sections. My initial checks involve confirming all sections are accurately structured. I\u0027m also ensuring the root node\u0027s `parent_id` is null, and \"main\" is the root branch name. I\u0027m finalizing data entry and ensuring compliance with the structure, specifically focusing on `node_id`, `parent_id`, topic and branch relationships, and starting and closing branch values.\n\n\n**Finalizing Branch Assignments**\n\nI\u0027m now implementing the branch structure based on Bari\u0027s segment shifts. \"Main\" is the root; others fork and merge as she changes topics. I\u0027m verifying the initial nodes, making sure `is_digression_start` and branch assignments are correct. I\u0027m now making sure all assigned topics are correct, for example, nodes in \"character_and_norms\" correctly get T2/T4, as specified. Finally, I\u0027ve created the final JSON file.\n\n\n**Calculating Final Metrics**\n\nI\u0027m now calculating the final metrics after incorporating all arguments and ensuring correct topic assignments. I\u0027ve updated the nodes with the correct topics: \"foreign_policy\" gets T5, \"competence_and_honesty\" gets T6, \"economy_and_tariffs\" gets T7, \"immigration\" gets T8, and \"closing_arguments\" gets T1. I am happy to report: Total Nodes: 116, Total Branches: 7, Unresolved: 0, Average Deviation: ~0.1, Coherence: 0.9. I\u0027m focusing on ensuring all text is preserved.\n\n\n**Integrating Initial Transcript Clips**\n\nI\u0027m now integrating initial transcript clips into the node structure, including quotes from Trump and Harris. Each clip is now designated as an individual node to accurately reflect the initial conversation snippets. I am adjusting the starting structure of the conversation.\n\n\n**Adding Transcript Clips**\n\nI\u0027m now integrating the provided transcript clips to enhance the initial segment of the conversation. I\u0027ve focused on assigning each quote as an individual node. These are now integrated, ensuring the structure mirrors the original order. I\u0027m noting the content focus and character assignments.\n\n\n**Updating Node and Branch Counts**\n\nI\u0027ve just added the transcript clips and updated the node structure accordingly. I\u0027ve classified the initial clips as \"montage\" and assigned them to the \"election_2024\" topic. I\u0027ve re-calculated node counts and now have roughly 125 total nodes, with the clips making up the first 22. Branch assignments are now in progress.\n\n\n**Finalizing Argument Mapping**\n\nI\u0027m now concluding the analysis, focusing on refining branch assignments and ensuring exact text captures. I\u0027m verifying nodes 86 through 125, the \"economy_and_tariffs\" branch (106-112), the \"immigration\" branch (113-118), and \"closing_and_meta\" (119-125). I\u0027m also ensuring the transcript text is captured verbatim, and the JSON is a single line, per prompt. I\u0027ve documented all participants and topics.\n\n\n**Finalizing Transcript Integration**\n\nI\u0027m now integrating the remaining transcript details, specifically the opening clips and associated metadata. I am integrating these details, verifying topic assignments, and fine-tuning the structure. I\u0027ve ensured a complete and accurate map of the debate. Final node count is 125, branches are 8, with an average deviation of ~0.12, giving a coherence of 0.88.\n\n\n**Refining Conversation Segments**\n\nI\u0027m now integrating the provided segments from node 24 onward to better reflect the conversation flow. I\u0027m taking extreme care in capturing the exact text for accuracy and verifying parent-child relationships within the revised structure. I am paying close attention to the branching logic in light of the transcript text.\n\n\n**Integrating Final Segments**\n\nI\u0027m now integrating segments from node 24 to the final node, ensuring exact transcript accuracy and correcting parent-child relationships. I\u0027m focusing on \"economy_and_tariffs\" (106-112), \"immigration\" (113-118), and \"closing_and_meta\" (119-125). I am including Bari\u0027s shift to the ad read. The JSON output will be a single line, per the prompt instructions.\n\n\n",
+      "role": "model",
+      "tokenCount": 6513,
+      "isThought": true,
+      "thinkingBudget": -1,
+      "parts": [{
+        "text": "**Initiating Conversation Mapping**\n\nI\u0027m starting to map the conversation flow of the Sam Harris, Ben Shapiro debate moderated by Bari Weiss. My initial focus is on structuring the introduction by Bari Weiss into a JSON graph to understand the context and setup for the discussion regarding the 2024 US Presidential Election (Harris vs. Trump).\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Analyzing Initial Propositions**\n\nI\u0027ve moved past the initial setup and am now dissecting the opening arguments from both sides. I\u0027m focusing on their core justifications for supporting either Harris or Trump. The debate\u0027s early focus on character versus policy is fascinating. I\u0027m noting the immediate clash regarding Trump\u0027s alleged disqualification based on character and divisiveness, versus his prior policy accomplishments, the system and Trump as a coronor. I\u0027m also capturing the core divergence on fascism and January 6th.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Deconstructing Further Arguments**\n\nI\u0027m now diving into the specifics. I\u0027m noting the debate around Biden\u0027s fitness and Harris\u0027s competence, with Sam defending the distinction between campaigning and governing. Ben\u0027s view on Trump\u0027s tariff proposals as leverage is also fascinating, and I\u0027m comparing it to Sam\u0027s citing of economists\u0027 warnings. I\u0027m outlining immigration, with Sam\u0027s concerns about mass deportations, versus Ben\u0027s view of a criminal-focused policy, which can be linked to Trump\u0027s first-term policies. I am also capturing the closing arguments and Bari\u0027s conclusion.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Structuring Debate Components**\n\nI\u0027m now focusing on structuring the debate\u0027s core components as a map. I\u0027ve begun organizing the conversation into branches and nodes, tracking key arguments and their offshoots. I am noting the division into branches such as Trump\u0027s character, policy, fascism, foreign policy, Biden\u0027s health, economy, and immigration. I\u0027m also starting to calculate metrics like total nodes and branches. Finally, I\u0027m documenting the participants and main topics.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Mapping Debate Structure**\n\nI\u0027m now refining the debate\u0027s structure, categorizing key arguments under specific topics and branches. This involves mapping topics like fascism, foreign policy, and economic issues into clearly defined branches, with nodes representing distinct exchanges within the debate. I\u0027m focusing on creating a complete and easily navigable map of the core components.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Defining Debate Framework**\n\nI\u0027m now establishing explicit rules for structuring the debate\u0027s components. Each utterance is becoming a node, with new branches created for topic shifts. I\u0027m focusing on ensuring `parent_id` is strictly the previous node, calculating deviation scores accurately, and correctly identifying the start of digressions. The initial node count is now documented up to node 21, including the progression of arguments.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Tracking Argument Progression**\n\nI\u0027ve been working on integrating new arguments into the existing structure, specifically from node 22 to 50, and am charting out the arguments. I\u0027m focusing on the interplay between Ben and Sam and evaluating the arguments. I\u0027m identifying which arguments are most compelling, and which are the weakest. I\u0027m also ensuring the correct `parent_id` is linked to capture each flow. I\u0027m tracking the transition between fascism, foreign policy, and individual candidates.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Charting New Arguments**\n\nI\u0027m now integrating arguments from node 52 to 81, focusing on the discussion\u0027s flow. There\u0027s a fascinating exchange on Ben\u0027s perceived \"lies,\" leading into an analysis of golf analogies, the Georgia call, and accusations of \"word salad.\" I\u0027m also capturing the evolution towards discussions on antisemitism and foreign policy, particularly concerning Israel and Ukraine. I\u0027m noting the specific arguments and their transitions, including the identification of \"fascists in Trumpistan\" and comments regarding Muslim voters. I\u0027m still ensuring the `parent_id` is correct.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Integrating Final Arguments**\n\nI\u0027m now integrating the final arguments from nodes 82 to 111 into the conversation map. The conversation has now touched on topics such as the influence of foreign policy, including discussions of Pax Americana and Vance, with analyses of security industries. I\u0027m focusing on the interplay between Ben\u0027s views on interests versus democracy, and Sam\u0027s contrasting perspectives. The argument transition focuses on immigration and moral obligations.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Concluding Debate Analysis**\n\nI\u0027ve completed the integration of the final segments, including the closing remarks and farewells. I\u0027ve successfully finalized the entire conversation map, assigning appropriate IDs to the topics and branches, and calculating total nodes and branches. I\u0027ve also calculated that the average deviation is 0.15, for a coherence score of 0.85, indicating a high degree of structural coherence in the debate.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Refining JSON Output**\n\nI\u0027m now focusing on refining the JSON output, particularly the structure to accurately represent the debate. I\u0027m focusing on ensuring data integrity across the key sections. My initial checks involve confirming all sections are accurately structured. I\u0027m also ensuring the root node\u0027s `parent_id` is null, and \"main\" is the root branch name. I\u0027m finalizing data entry and ensuring compliance with the structure, specifically focusing on `node_id`, `parent_id`, topic and branch relationships, and starting and closing branch values.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Finalizing Branch Assignments**\n\nI\u0027m now implementing the branch structure based on Bari\u0027s segment shifts. \"Main\" is the root; others fork and merge as she changes topics. I\u0027m verifying the initial nodes, making sure `is_digression_start` and branch assignments are correct. I\u0027m now making sure all assigned topics are correct, for example, nodes in \"character_and_norms\" correctly get T2/T4, as specified. Finally, I\u0027ve created the final JSON file.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Calculating Final Metrics**\n\nI\u0027m now calculating the final metrics after incorporating all arguments and ensuring correct topic assignments. I\u0027ve updated the nodes with the correct topics: \"foreign_policy\" gets T5, \"competence_and_honesty\" gets T6, \"economy_and_tariffs\" gets T7, \"immigration\" gets T8, and \"closing_arguments\" gets T1. I am happy to report: Total Nodes: 116, Total Branches: 7, Unresolved: 0, Average Deviation: ~0.1, Coherence: 0.9. I\u0027m focusing on ensuring all text is preserved.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Integrating Initial Transcript Clips**\n\nI\u0027m now integrating initial transcript clips into the node structure, including quotes from Trump and Harris. Each clip is now designated as an individual node to accurately reflect the initial conversation snippets. I am adjusting the starting structure of the conversation.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Adding Transcript Clips**\n\nI\u0027m now integrating the provided transcript clips to enhance the initial segment of the conversation. I\u0027ve focused on assigning each quote as an individual node. These are now integrated, ensuring the structure mirrors the original order. I\u0027m noting the content focus and character assignments.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Updating Node and Branch Counts**\n\nI\u0027ve just added the transcript clips and updated the node structure accordingly. I\u0027ve classified the initial clips as \"montage\" and assigned them to the \"election_2024\" topic. I\u0027ve re-calculated node counts and now have roughly 125 total nodes, with the clips making up the first 22. Branch assignments are now in progress.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Finalizing Argument Mapping**\n\nI\u0027m now concluding the analysis, focusing on refining branch assignments and ensuring exact text captures. I\u0027m verifying nodes 86 through 125, the \"economy_and_tariffs\" branch (106-112), the \"immigration\" branch (113-118), and \"closing_and_meta\" (119-125). I\u0027m also ensuring the transcript text is captured verbatim, and the JSON is a single line, per prompt. I\u0027ve documented all participants and topics.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Finalizing Transcript Integration**\n\nI\u0027m now integrating the remaining transcript details, specifically the opening clips and associated metadata. I am integrating these details, verifying topic assignments, and fine-tuning the structure. I\u0027ve ensured a complete and accurate map of the debate. Final node count is 125, branches are 8, with an average deviation of ~0.12, giving a coherence of 0.88.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Refining Conversation Segments**\n\nI\u0027m now integrating the provided segments from node 24 onward to better reflect the conversation flow. I\u0027m taking extreme care in capturing the exact text for accuracy and verifying parent-child relationships within the revised structure. I am paying close attention to the branching logic in light of the transcript text.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Integrating Final Segments**\n\nI\u0027m now integrating segments from node 24 to the final node, ensuring exact transcript accuracy and correcting parent-child relationships. I\u0027m focusing on \"economy_and_tariffs\" (106-112), \"immigration\" (113-118), and \"closing_and_meta\" (119-125). I am including Bari\u0027s shift to the ad read. The JSON output will be a single line, per the prompt instructions.\n\n\n",
+        "thought": true
+      }],
+      "createTime": "2026-02-23T16:56:10.372Z"
+    }],
+    "pendingInputs": [{
+      "text": "",
+      "role": "user"
+    }]
+  }
+}

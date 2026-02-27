@@ -1,0 +1,2100 @@
+{
+  "conversation": {
+    "id": "debate-2016-09-26",
+    "title": "First 2016 Presidential Debate",
+    "main_topic": "National Policy and Governance"
+  },
+  "participants": [
+    {
+      "id": "p1",
+      "name": "Lester Holt",
+      "role": "Moderator"
+    },
+    {
+      "id": "p2",
+      "name": "Hillary Clinton",
+      "role": "Democratic Nominee"
+    },
+    {
+      "id": "p3",
+      "name": "Donald J. Trump",
+      "role": "Republican Nominee"
+    }
+  ],
+  "topics": [
+    {
+      "id": "t1",
+      "name": "Economic Policy and Prosperity",
+      "is_main": true
+    },
+    {
+      "id": "t2",
+      "name": "Candidate Business Ethics and Personal Wealth",
+      "is_main": false
+    },
+    {
+      "id": "t3",
+      "name": "Race Relations and Criminal Justice",
+      "is_main": false
+    },
+    {
+      "id": "t4",
+      "name": "Cybersecurity and Foreign Policy",
+      "is_main": false
+    },
+    {
+      "id": "t5",
+      "name": "Personal Scandals and Character",
+      "is_main": false
+    }
+  ],
+  "branches": [
+    {
+      "name": "main",
+      "topic_id": "t1",
+      "parent_branch": null,
+      "fork_node_id": null,
+      "resolved": true,
+      "merge_node_id": null
+    },
+    {
+      "name": "personal_wealth_digression",
+      "topic_id": "t2",
+      "parent_branch": "main",
+      "fork_node_id": "n44",
+      "resolved": true,
+      "merge_node_id": "n51"
+    },
+    {
+      "name": "email_controversy",
+      "topic_id": "t5",
+      "parent_branch": "main",
+      "fork_node_id": "n104",
+      "resolved": true,
+      "merge_node_id": "n112"
+    },
+    {
+      "name": "birther_lie_discussion",
+      "topic_id": "t5",
+      "parent_branch": "main",
+      "fork_node_id": "n168",
+      "resolved": true,
+      "merge_node_id": "n185"
+    },
+    {
+      "name": "stamina_and_character_attacks",
+      "topic_id": "t5",
+      "parent_branch": "main",
+      "fork_node_id": "n220",
+      "resolved": false,
+      "merge_node_id": null
+    }
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "speaker": "HOLT",
+      "text": "Good evening from Hofstra University in Hempstead, New York.",
+      "parent_id": null,
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n2",
+      "speaker": "HOLT",
+      "text": "I’m Lester Holt, anchor of “NBC Nightly News.”",
+      "parent_id": "n1",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n3",
+      "speaker": "HOLT",
+      "text": "I want to welcome you to the first presidential debate.",
+      "parent_id": "n2",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n4",
+      "speaker": "HOLT",
+      "text": "The participants tonight are Donald Trump and Hillary Clinton.",
+      "parent_id": "n3",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n5",
+      "speaker": "HOLT",
+      "text": "This debate is sponsored by the Commission on Presidential Debates, a nonpartisan, nonprofit organization.",
+      "parent_id": "n4",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n6",
+      "speaker": "HOLT",
+      "text": "The commission drafted tonight’s format, and the rules have been agreed to by the campaigns.",
+      "parent_id": "n5",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n7",
+      "speaker": "HOLT",
+      "text": "The 90-minute debate is divided into six segments, each 15 minutes long.",
+      "parent_id": "n6",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n8",
+      "speaker": "HOLT",
+      "text": "We’ll explore three topic areas tonight: Achieving prosperity; America’s direction; and securing America.",
+      "parent_id": "n7",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n9",
+      "speaker": "HOLT",
+      "text": "At the start of each segment, I will ask the same lead-off question to both candidates, and they will each have up to two minutes to respond.",
+      "parent_id": "n8",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n10",
+      "speaker": "HOLT",
+      "text": "From that point until the end of the segment, we’ll have an open discussion.",
+      "parent_id": "n9",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n11",
+      "speaker": "HOLT",
+      "text": "The questions are mine and have not been shared with the commission or the campaigns.",
+      "parent_id": "n10",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n12",
+      "speaker": "HOLT",
+      "text": "The audience here in the room has agreed to remain silent so that we can focus on what the candidates are saying.",
+      "parent_id": "n11",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n13",
+      "speaker": "HOLT",
+      "text": "I will invite you to applaud, however, at this moment, as we welcome the candidates: Democratic nominee for president of the United States, Hillary Clinton, and Republican nominee for president of the United States, Donald J. Trump.",
+      "parent_id": "n12",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n14",
+      "speaker": "CLINTON",
+      "text": "How are you, Donald?",
+      "parent_id": "n13",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 0.1
+        },
+        {
+          "topic_id": "t5",
+          "weight": 0.9
+        }
+      ],
+      "deviation_score": 0.9,
+      "branch": "main"
+    },
+    {
+      "id": "n15",
+      "speaker": "HOLT",
+      "text": "Good luck to you.",
+      "parent_id": "n14",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n16",
+      "speaker": "HOLT",
+      "text": "Well, I don’t expect us to cover all the issues of this campaign tonight, but I remind everyone, there are two more presidential debates scheduled.",
+      "parent_id": "n15",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n17",
+      "speaker": "HOLT",
+      "text": "We are going to focus on many of the issues that voters tell us are most important, and we’re going to press for specifics.",
+      "parent_id": "n16",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n18",
+      "speaker": "HOLT",
+      "text": "I am honored to have this role, but this evening belongs to the candidates and, just as important, to the American people.",
+      "parent_id": "n17",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n19",
+      "speaker": "HOLT",
+      "text": "Candidates, we look forward to hearing you articulate your policies and your positions, as well as your visions and your values.",
+      "parent_id": "n18",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n20",
+      "speaker": "HOLT",
+      "text": "So, let’s begin.",
+      "parent_id": "n19",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n21",
+      "speaker": "HOLT",
+      "text": "We’re calling this opening segment “Achieving Prosperity.”",
+      "parent_id": "n20",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n22",
+      "speaker": "HOLT",
+      "text": "And central to that is jobs.",
+      "parent_id": "n21",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n23",
+      "speaker": "HOLT",
+      "text": "There are two economic realities in America today.",
+      "parent_id": "n22",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n24",
+      "speaker": "HOLT",
+      "text": "There’s been a record six straight years of job growth, and new census numbers show incomes have increased at a record rate after years of stagnation.",
+      "parent_id": "n23",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n25",
+      "speaker": "HOLT",
+      "text": "However, income inequality remains significant, and nearly half of Americans are living paycheck to paycheck.",
+      "parent_id": "n24",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n26",
+      "speaker": "HOLT",
+      "text": "Beginning with you, Secretary Clinton, why are you a better choice than your opponent to create the kinds of jobs that will put more money into the pockets of American works?",
+      "parent_id": "n25",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n27",
+      "speaker": "CLINTON",
+      "text": "Well, thank you, Lester, and thanks to Hofstra for hosting us.",
+      "parent_id": "n26",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n28",
+      "speaker": "CLINTON",
+      "text": "The central question in this election is really what kind of country we want to be and what kind of future we’ll build together.",
+      "parent_id": "n27",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n29",
+      "speaker": "CLINTON",
+      "text": "Today is my granddaughter’s second birthday, so I think about this a lot.",
+      "parent_id": "n28",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 0.2
+        },
+        {
+          "topic_id": "t5",
+          "weight": 0.8
+        }
+      ],
+      "deviation_score": 0.8,
+      "branch": "main"
+    },
+    {
+      "id": "n30",
+      "speaker": "CLINTON",
+      "text": "First, we have to build an economy that works for everyone, not just those at the top.",
+      "parent_id": "n29",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n31",
+      "speaker": "CLINTON",
+      "text": "That means we need new jobs, good jobs, with rising incomes.",
+      "parent_id": "n30",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n32",
+      "speaker": "CLINTON",
+      "text": "I want us to invest in you. I want us to invest in your future.",
+      "parent_id": "n31",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n33",
+      "speaker": "CLINTON",
+      "text": "That means jobs in infrastructure, in advanced manufacturing, innovation and technology, clean, renewable energy, and small business, because most of the new jobs will come from small business.",
+      "parent_id": "n32",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n34",
+      "speaker": "CLINTON",
+      "text": "We also have to make the economy fairer.",
+      "parent_id": "n33",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n35",
+      "speaker": "CLINTON",
+      "text": "That starts with raising the national minimum wage and also guarantee, finally, equal pay for women’s work.",
+      "parent_id": "n34",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n36",
+      "speaker": "CLINTON",
+      "text": "I also want to see more companies do profit-sharing.",
+      "parent_id": "n35",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n37",
+      "speaker": "CLINTON",
+      "text": "If you help create the profits, you should be able to share in them, not just the executives at the top.",
+      "parent_id": "n36",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n38",
+      "speaker": "CLINTON",
+      "text": "And I want us to do more to support people who are struggling to balance family and work.",
+      "parent_id": "n37",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n39",
+      "speaker": "CLINTON",
+      "text": "I’ve heard from so many of you about the difficult choices you face and the stresses that you’re under.",
+      "parent_id": "n38",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n40",
+      "speaker": "CLINTON",
+      "text": "So let’s have paid family leave, earned sick days.",
+      "parent_id": "n39",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n41",
+      "speaker": "CLINTON",
+      "text": "Let’s be sure we have affordable child care and debt-free college.",
+      "parent_id": "n40",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n42",
+      "speaker": "CLINTON",
+      "text": "How are we going to do it? We’re going to do it by having the wealthy pay their fair share and close the corporate loopholes.",
+      "parent_id": "n41",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n43",
+      "speaker": "CLINTON",
+      "text": "Finally, we tonight are on the stage together, Donald Trump and I.",
+      "parent_id": "n42",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n44",
+      "speaker": "CLINTON",
+      "text": "Donald, it’s good to be with you.",
+      "parent_id": "n43",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 0.5
+        },
+        {
+          "topic_id": "t5",
+          "weight": 0.5
+        }
+      ],
+      "deviation_score": 0.5,
+      "branch": "main"
+    },
+    {
+      "id": "n45",
+      "speaker": "CLINTON",
+      "text": "You know, Donald was very fortunate in his life, and that’s all to his benefit.",
+      "parent_id": "n44",
+      "topic_assignments": [
+        {
+          "topic_id": "t2",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "personal_wealth_digression"
+    },
+    {
+      "id": "n46",
+      "speaker": "CLINTON",
+      "text": "He started his business with $14 million, borrowed from his father, and he really believes that the more you help wealthy people, the better off we’ll be and that everything will work out from there.",
+      "parent_id": "n45",
+      "topic_assignments": [
+        {
+          "topic_id": "t2",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "personal_wealth_digression"
+    },
+    {
+      "id": "n47",
+      "speaker": "CLINTON",
+      "text": "I don’t buy that.",
+      "parent_id": "n46",
+      "topic_assignments": [
+        {
+          "topic_id": "t2",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "personal_wealth_digression"
+    },
+    {
+      "id": "n48",
+      "speaker": "CLINTON",
+      "text": "I have a different experience.",
+      "parent_id": "n47",
+      "topic_assignments": [
+        {
+          "topic_id": "t2",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "personal_wealth_digression"
+    },
+    {
+      "id": "n49",
+      "speaker": "CLINTON",
+      "text": "My father was a small-businessman.",
+      "parent_id": "n48",
+      "topic_assignments": [
+        {
+          "topic_id": "t2",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "personal_wealth_digression"
+    },
+    {
+      "id": "n50",
+      "speaker": "CLINTON",
+      "text": "He worked really hard.",
+      "parent_id": "n49",
+      "topic_assignments": [
+        {
+          "topic_id": "t2",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "personal_wealth_digression"
+    },
+    {
+      "id": "n51",
+      "speaker": "HOLT",
+      "text": "Let me follow up with Mr. Trump, if you can.",
+      "parent_id": "n50",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n52",
+      "speaker": "HOLT",
+      "text": "You’ve talked about creating 25 million jobs, and you’ve promised to bring back millions of jobs for Americans.",
+      "parent_id": "n51",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n53",
+      "speaker": "TRUMP",
+      "text": "Well, for one thing — and before we start on that — my father gave me a very small loan in 1975, and I built it into a company that’s worth many, many billions of dollars...",
+      "parent_id": "n52",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 0.3
+        },
+        {
+          "topic_id": "t2",
+          "weight": 0.7
+        }
+      ],
+      "deviation_score": 0.7,
+      "branch": "main"
+    },
+    {
+      "id": "n54",
+      "speaker": "TRUMP",
+      "text": "Our jobs are fleeing the country.",
+      "parent_id": "n53",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n55",
+      "speaker": "TRUMP",
+      "text": "They’re going to Mexico.",
+      "parent_id": "n54",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n56",
+      "speaker": "TRUMP",
+      "text": "They’re going to many other countries.",
+      "parent_id": "n55",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n57",
+      "speaker": "TRUMP",
+      "text": "You look at what China is doing to our country in terms of making our product.",
+      "parent_id": "n56",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n58",
+      "speaker": "TRUMP",
+      "text": "They’re devaluing their currency, and there’s nobody in our government to fight them.",
+      "parent_id": "n57",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n59",
+      "speaker": "TRUMP",
+      "text": "And we have a very good fight.",
+      "parent_id": "n58",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n60",
+      "speaker": "TRUMP",
+      "text": "And we have a winning fight.",
+      "parent_id": "n59",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n61",
+      "speaker": "TRUMP",
+      "text": "Because they’re using our country as a piggy bank to rebuild China, and many other countries are doing the same thing.",
+      "parent_id": "n60",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n62",
+      "speaker": "TRUMP",
+      "text": "So we’re losing our good jobs, so many of them.",
+      "parent_id": "n61",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n63",
+      "speaker": "TRUMP",
+      "text": "When you look at what’s happening in Mexico, a friend of mine who builds plants said it’s the eighth wonder of the world.",
+      "parent_id": "n62",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n64",
+      "speaker": "TRUMP",
+      "text": "They’re building some of the biggest plants anywhere in the world, some of the most sophisticated, some of the best plants.",
+      "parent_id": "n63",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n65",
+      "speaker": "TRUMP",
+      "text": "With the United States, as he said, not so much.",
+      "parent_id": "n64",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n66",
+      "speaker": "TRUMP",
+      "text": "So Ford is leaving.",
+      "parent_id": "n65",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n67",
+      "speaker": "TRUMP",
+      "text": "You see that, their small car division leaving.",
+      "parent_id": "n66",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n68",
+      "speaker": "TRUMP",
+      "text": "Thousands of jobs leaving Michigan, leaving Ohio.",
+      "parent_id": "n67",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n69",
+      "speaker": "TRUMP",
+      "text": "They’re all leaving.",
+      "parent_id": "n68",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n70",
+      "speaker": "TRUMP",
+      "text": "And we can’t allow it to happen anymore.",
+      "parent_id": "n69",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n71",
+      "speaker": "TRUMP",
+      "text": "As far as child care is concerned and so many other things, I think Hillary and I agree on that.",
+      "parent_id": "n70",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n72",
+      "speaker": "TRUMP",
+      "text": "We probably disagree a little bit as to numbers and amounts and what we’re going to do, but perhaps we’ll be talking about that later.",
+      "parent_id": "n71",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n73",
+      "speaker": "TRUMP",
+      "text": "But we have to stop our jobs from being stolen from us.",
+      "parent_id": "n72",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n74",
+      "speaker": "TRUMP",
+      "text": "We have to stop our companies from leaving the United States and, with it, firing all of their people.",
+      "parent_id": "n73",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n75",
+      "speaker": "TRUMP",
+      "text": "All you have to do is take a look at Carrier air conditioning in Indianapolis.",
+      "parent_id": "n74",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n76",
+      "speaker": "TRUMP",
+      "text": "They left — fired 1,400 people.",
+      "parent_id": "n75",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n77",
+      "speaker": "TRUMP",
+      "text": "They’re going to Mexico.",
+      "parent_id": "n76",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n78",
+      "speaker": "TRUMP",
+      "text": "So many hundreds and hundreds of companies are doing this.",
+      "parent_id": "n77",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n79",
+      "speaker": "TRUMP",
+      "text": "We cannot let it happen.",
+      "parent_id": "n78",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n80",
+      "speaker": "TRUMP",
+      "text": "Under my plan, I’ll be reducing taxes tremendously, from 35 percent to 15 percent for companies, small and big businesses.",
+      "parent_id": "n79",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n81",
+      "speaker": "TRUMP",
+      "text": "That’s going to be a job creator like we haven’t seen since Ronald Reagan.",
+      "parent_id": "n80",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n82",
+      "speaker": "TRUMP",
+      "text": "It’s going to be a beautiful thing to watch.",
+      "parent_id": "n81",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n83",
+      "speaker": "TRUMP",
+      "text": "Companies will come.",
+      "parent_id": "n82",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n84",
+      "speaker": "TRUMP",
+      "text": "They will build.",
+      "parent_id": "n83",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n85",
+      "speaker": "TRUMP",
+      "text": "They will expand.",
+      "parent_id": "n84",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n86",
+      "speaker": "TRUMP",
+      "text": "New companies will start.",
+      "parent_id": "n85",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n87",
+      "speaker": "TRUMP",
+      "text": "And I look very, very much forward to doing it.",
+      "parent_id": "n86",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n88",
+      "speaker": "TRUMP",
+      "text": "We have to renegotiate our trade deals, and we have to stop these countries from stealing our companies and our jobs.",
+      "parent_id": "n87",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n89",
+      "speaker": "HOLT",
+      "text": "Secretary Clinton, would you like to respond?",
+      "parent_id": "n88",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n90",
+      "speaker": "CLINTON",
+      "text": "Well, I think that trade is an important issue.",
+      "parent_id": "n89",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n91",
+      "speaker": "CLINTON",
+      "text": "Of course, we are 5 percent of the world’s population; we have to trade with the other 95 percent.",
+      "parent_id": "n90",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n92",
+      "speaker": "CLINTON",
+      "text": "And we need to have smart, fair trade deals.",
+      "parent_id": "n91",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n93",
+      "speaker": "CLINTON",
+      "text": "We also, though, need to have a tax system that rewards work and not just financial transactions.",
+      "parent_id": "n92",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n94",
+      "speaker": "CLINTON",
+      "text": "And the kind of plan that Donald has put forth would be trickle-down economics all over again.",
+      "parent_id": "n93",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n95",
+      "speaker": "CLINTON",
+      "text": "In fact, it would be the most extreme version, the biggest tax cuts for the top percent of the people in this country than we’ve ever had.",
+      "parent_id": "n94",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n96",
+      "speaker": "CLINTON",
+      "text": "I call it trumped-up trickle-down, because that’s exactly what it would be.",
+      "parent_id": "n95",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n97",
+      "speaker": "CLINTON",
+      "text": "That is not how we grow the economy.",
+      "parent_id": "n96",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n98",
+      "speaker": "CLINTON",
+      "text": "We just have a different view about what’s best for growing the economy, how we make investments that will actually produce jobs and rising incomes.",
+      "parent_id": "n97",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n99",
+      "speaker": "CLINTON",
+      "text": "I think we come at it from somewhat different perspectives.",
+      "parent_id": "n98",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n100",
+      "speaker": "HOLT",
+      "text": "Mr. Trump, we’re talking about the burden that Americans have to pay, yet you have not released your tax returns.",
+      "parent_id": "n99",
+      "topic_assignments": [
+        {
+          "topic_id": "t2",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n101",
+      "speaker": "TRUMP",
+      "text": "I don’t mind releasing — I’m under a routine audit.",
+      "parent_id": "n100",
+      "topic_assignments": [
+        {
+          "topic_id": "t2",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n102",
+      "speaker": "TRUMP",
+      "text": "And it’ll be released.",
+      "parent_id": "n101",
+      "topic_assignments": [
+        {
+          "topic_id": "t2",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n103",
+      "speaker": "TRUMP",
+      "text": "And — as soon as the audit’s finished, it will be released.",
+      "parent_id": "n102",
+      "topic_assignments": [
+        {
+          "topic_id": "t2",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n104",
+      "speaker": "TRUMP",
+      "text": "I will release my tax returns — against my lawyer’s wishes — when she releases her 33,000 e-mails that have been deleted.",
+      "parent_id": "n103",
+      "topic_assignments": [
+        {
+          "topic_id": "t2",
+          "weight": 0.5
+        },
+        {
+          "topic_id": "t5",
+          "weight": 0.5
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n105",
+      "speaker": "CLINTON",
+      "text": "I do.",
+      "parent_id": "n104",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "email_controversy"
+    },
+    {
+      "id": "n106",
+      "speaker": "CLINTON",
+      "text": "You know, I made a mistake using a private e- mail.",
+      "parent_id": "n105",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "email_controversy"
+    },
+    {
+      "id": "n107",
+      "speaker": "CLINTON",
+      "text": "And if I had to do it over again, I would, obviously, do it differently.",
+      "parent_id": "n106",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "email_controversy"
+    },
+    {
+      "id": "n108",
+      "speaker": "CLINTON",
+      "text": "But I’m not going to make any excuses.",
+      "parent_id": "n107",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "email_controversy"
+    },
+    {
+      "id": "n109",
+      "speaker": "CLINTON",
+      "text": "It was a mistake, and I take responsibility for that.",
+      "parent_id": "n108",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "email_controversy"
+    },
+    {
+      "id": "n110",
+      "speaker": "TRUMP",
+      "text": "That was more than a mistake.",
+      "parent_id": "n109",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "email_controversy"
+    },
+    {
+      "id": "n111",
+      "speaker": "TRUMP",
+      "text": "That was done purposely.",
+      "parent_id": "n110",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "email_controversy"
+    },
+    {
+      "id": "n112",
+      "speaker": "HOLT",
+      "text": "We move into our next segment talking about America’s direction.",
+      "parent_id": "n111",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n113",
+      "speaker": "HOLT",
+      "text": "And let’s start by talking about race.",
+      "parent_id": "n112",
+      "topic_assignments": [
+        {
+          "topic_id": "t3",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n114",
+      "speaker": "HOLT",
+      "text": "The share of Americans who say race relations are bad in this country is the highest it’s been in decades, much of it amplified by shootings of African-Americans by police, as we’ve seen recently in Charlotte and Tulsa.",
+      "parent_id": "n113",
+      "topic_assignments": [
+        {
+          "topic_id": "t3",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n115",
+      "speaker": "CLINTON",
+      "text": "Well, you’re right. Race remains a significant challenge in our country.",
+      "parent_id": "n114",
+      "topic_assignments": [
+        {
+          "topic_id": "t3",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n116",
+      "speaker": "CLINTON",
+      "text": "Unfortunately, race still determines too much, often determines where people live, determines what kind of education in their public schools they can get, and, yes, it determines how they’re treated in the criminal justice system.",
+      "parent_id": "n115",
+      "topic_assignments": [
+        {
+          "topic_id": "t3",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n117",
+      "speaker": "TRUMP",
+      "text": "Well, first of all, Secretary Clinton doesn’t want to use a couple of words, and that’s law and order.",
+      "parent_id": "n116",
+      "topic_assignments": [
+        {
+          "topic_id": "t3",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n118",
+      "speaker": "TRUMP",
+      "text": "And we need law and order.",
+      "parent_id": "n117",
+      "topic_assignments": [
+        {
+          "topic_id": "t3",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n119",
+      "speaker": "TRUMP",
+      "text": "If we don’t have it, we’re not going to have a country.",
+      "parent_id": "n118",
+      "topic_assignments": [
+        {
+          "topic_id": "t3",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n120",
+      "speaker": "HOLT",
+      "text": "Mr. Trump, for five years, you perpetuated a false claim that the nation’s first black president was not a natural-born citizen.",
+      "parent_id": "n119",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n121",
+      "speaker": "TRUMP",
+      "text": "I’ll tell you very — well, just very simple to say.",
+      "parent_id": "n120",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "birther_lie_discussion"
+    },
+    {
+      "id": "n122",
+      "speaker": "TRUMP",
+      "text": "Sidney Blumenthal works for the campaign and close — very close friend of Secretary Clinton.",
+      "parent_id": "n121",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "birther_lie_discussion"
+    },
+    {
+      "id": "n123",
+      "speaker": "TRUMP",
+      "text": "When I got involved, I didn’t fail.",
+      "parent_id": "n122",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "birther_lie_discussion"
+    },
+    {
+      "id": "n124",
+      "speaker": "TRUMP",
+      "text": "I got him to give the birth certificate.",
+      "parent_id": "n123",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "birther_lie_discussion"
+    },
+    {
+      "id": "n125",
+      "speaker": "CLINTON",
+      "text": "But it can’t be dismissed that easily.",
+      "parent_id": "n124",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "birther_lie_discussion"
+    },
+    {
+      "id": "n126",
+      "speaker": "CLINTON",
+      "text": "He has really started his political activity based on this racist lie that our first black president was not an American citizen.",
+      "parent_id": "n125",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "birther_lie_discussion"
+    },
+    {
+      "id": "n127",
+      "speaker": "HOLT",
+      "text": "Our next segment is called “Securing America.”",
+      "parent_id": "n126",
+      "topic_assignments": [
+        {
+          "topic_id": "t4",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n128",
+      "speaker": "CLINTON",
+      "text": "Well, I think cyber security, cyber warfare will be one of the biggest challenges facing the next president...",
+      "parent_id": "n127",
+      "topic_assignments": [
+        {
+          "topic_id": "t4",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n129",
+      "speaker": "TRUMP",
+      "text": "As far as the cyber, I agree to parts of what Secretary Clinton said.",
+      "parent_id": "n128",
+      "topic_assignments": [
+        {
+          "topic_id": "t4",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n130",
+      "speaker": "TRUMP",
+      "text": "I have a son. He’s 10 years old. He has computers. He is so good with these computers, it’s unbelievable.",
+      "parent_id": "n129",
+      "topic_assignments": [
+        {
+          "topic_id": "t4",
+          "weight": 0.4
+        },
+        {
+          "topic_id": "t5",
+          "weight": 0.6
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n131",
+      "speaker": "HOLT",
+      "text": "Mr. Trump, this year Secretary Clinton became the first woman nominated for president by a major party.",
+      "parent_id": "n130",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n132",
+      "speaker": "HOLT",
+      "text": "Earlier this month, you said she doesn’t have, quote, “a presidential look.”",
+      "parent_id": "n131",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "main"
+    },
+    {
+      "id": "n133",
+      "speaker": "TRUMP",
+      "text": "She doesn’t have the look. She doesn’t have the stamina.",
+      "parent_id": "n132",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "stamina_and_character_attacks"
+    },
+    {
+      "id": "n134",
+      "speaker": "CLINTON",
+      "text": "Well, as soon as he travels to 112 countries and negotiates a peace deal... he can talk to me about stamina.",
+      "parent_id": "n133",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "stamina_and_character_attacks"
+    },
+    {
+      "id": "n135",
+      "speaker": "CLINTON",
+      "text": "But this is a man who has called women pigs, slobs and dogs...",
+      "parent_id": "n134",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "stamina_and_character_attacks"
+    },
+    {
+      "id": "n136",
+      "speaker": "CLINTON",
+      "text": "And he called this woman “Miss Piggy.” Then he called her “Miss Housekeeping,” because she was Latina.",
+      "parent_id": "n135",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "stamina_and_character_attacks"
+    },
+    {
+      "id": "n137",
+      "speaker": "TRUMP",
+      "text": "Where did you find this?",
+      "parent_id": "n136",
+      "topic_assignments": [
+        {
+          "topic_id": "t5",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 1.0,
+      "branch": "stamina_and_character_attacks"
+    },
+    {
+      "id": "n138",
+      "speaker": "HOLT",
+      "text": "One of you will not win this election. So my final question to you tonight, are you willing to accept the outcome as the will of the voters?",
+      "parent_id": "n137",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n139",
+      "speaker": "CLINTON",
+      "text": "Well, I support our democracy. And sometimes you win, sometimes you lose. But I certainly will support the outcome of this election.",
+      "parent_id": "n138",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n140",
+      "speaker": "TRUMP",
+      "text": "The answer is, if she wins, I will absolutely support her.",
+      "parent_id": "n139",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    },
+    {
+      "id": "n141",
+      "speaker": "HOLT",
+      "text": "All right. Well, that is going to do it for us. That concludes our debate for this evening, a spirit one.",
+      "parent_id": "n140",
+      "topic_assignments": [
+        {
+          "topic_id": "t1",
+          "weight": 1.0
+        }
+      ],
+      "deviation_score": 0.0,
+      "branch": "main"
+    }
+  ],
+  "metrics": {
+    "total_nodes": 141,
+    "total_branches": 5,
+    "coherence_score": 0.68,
+    "unresolved_branches": 1,
+    "avg_deviation_score": 0.32
+  }
+}

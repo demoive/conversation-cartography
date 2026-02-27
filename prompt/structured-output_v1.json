@@ -1,0 +1,242 @@
+{
+  "type": "object",
+  "properties": {
+    "conversation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "main_topic": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "main_topic"
+      ],
+      "propertyOrdering": [
+        "id",
+        "title",
+        "main_topic"
+      ]
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "topics": {
+      "type": "array",
+      "description": "All distinct topics identified, including the main trunk and all digressions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "is_main": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "is_main"
+        ],
+        "propertyOrdering": [
+          "id",
+          "label",
+          "description",
+          "is_main"
+        ]
+      }
+    },
+    "branches": {
+      "type": "array",
+      "description": "The Git-style branch structure. Each branch maps to a topic.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "topic_id": {
+            "type": "string"
+          },
+          "parent_branch": {
+            "type": "string"
+          },
+          "fork_node_id": {
+            "type": "string"
+          },
+          "merge_node_id": {
+            "type": "string"
+          },
+          "resolved": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name",
+          "topic_id",
+          "parent_branch",
+          "fork_node_id",
+          "resolved"
+        ],
+        "propertyOrdering": [
+          "name",
+          "topic_id",
+          "parent_branch",
+          "fork_node_id",
+          "merge_node_id",
+          "resolved"
+        ]
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "description": "Sentence-level units. Each node sits on a branch AND carries topic composition weights.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "speaker": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "branch": {
+            "type": "string"
+          },
+          "parent_id": {
+            "type": "string"
+          },
+          "topic_assignments": {
+            "type": "array",
+            "description": "Weighted topic composition. Weights should sum to 1.0.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "topic_id": {
+                  "type": "string"
+                },
+                "weight": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "topic_id",
+                "weight"
+              ],
+              "propertyOrdering": [
+                "topic_id",
+                "weight"
+              ]
+            }
+          },
+          "deviation_score": {
+            "type": "number",
+            "description": "0.0 = fully on main topic, 1.0 = entirely off-topic"
+          },
+          "is_digression_start": {
+            "type": "boolean"
+          },
+          "is_resolution": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "speaker",
+          "text",
+          "branch",
+          "parent_id",
+          "topic_assignments",
+          "deviation_score",
+          "is_digression_start",
+          "is_resolution"
+        ],
+        "propertyOrdering": [
+          "id",
+          "speaker",
+          "text",
+          "timestamp",
+          "branch",
+          "parent_id",
+          "topic_assignments",
+          "deviation_score",
+          "is_digression_start",
+          "is_resolution"
+        ]
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "total_nodes": {
+          "type": "integer"
+        },
+        "total_branches": {
+          "type": "integer"
+        },
+        "coherence_score": {
+          "type": "number"
+        },
+        "unresolved_branches": {
+          "type": "integer"
+        },
+        "avg_deviation_score": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "total_nodes",
+        "total_branches",
+        "coherence_score",
+        "unresolved_branches",
+        "avg_deviation_score"
+      ],
+      "propertyOrdering": [
+        "total_nodes",
+        "total_branches",
+        "coherence_score",
+        "unresolved_branches",
+        "avg_deviation_score"
+      ]
+    }
+  },
+  "required": [
+    "conversation",
+    "participants",
+    "topics",
+    "branches",
+    "nodes",
+    "metrics"
+  ],
+  "propertyOrdering": [
+    "conversation",
+    "participants",
+    "topics",
+    "branches",
+    "nodes",
+    "metrics"
+  ]
+}

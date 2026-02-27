@@ -1,0 +1,154 @@
+---
+config:
+  logLevel: debug
+  theme: base
+---
+gitGraph TB:
+    
+    commit id: "HOLT: Let me let Secretary Clinton get in here."
+
+    branch "economy"
+    commit id: "CLINTON: Well, let’s stop for a second and remember where we were eight years ago."
+    commit id: "CLINTON: We had the worst financial crisis, the Great Recession, the worst since the 1930s."
+    commit id: "CLINTON: That was in large part because of tax policies that slashed taxes on the wealthy, failed to invest in the middle class, took their eyes off of Wall Street, and created a perfect storm."
+
+    branch "housing_crisis"
+    commit id: "CLINTON: In fact, Donald was one of the people who rooted for the housing crisis."
+    commit id: "CLINTON: He said, back in 2006, “Gee, I hope it does collapse, because then I can go in and buy some and make some money.”"
+    commit id: "CLINTON: Well, it did collapse."
+    commit id: "TRUMP: That’s called business, by the way."
+
+    checkout "economy"
+    commit id: "CLINTON: Nine million people—nine million people lost their jobs."
+    commit id: "CLINTON: Five million people lost their homes."
+    commit id: "CLINTON: And $13 trillion in family wealth was wiped out."
+    commit id: "CLINTON: Now, we have come back from that abyss."
+    commit id: "CLINTON: And it has not been easy."
+    commit id: "CLINTON: So we’re now on the precipice of having a potentially much better economy, but the last thing we need to do is to go back to the policies that failed us in the first place."
+    commit id: "CLINTON: Independent experts have looked at what I’ve proposed and looked at what Donald’s proposed, and basically they’ve said this, that if his tax plan, which would blow up the debt by over $5 trillion and would in some instances disadvantage middle-class families compared to the wealthy, were to go into effect, we would lose 3.5 million jobs and maybe have another recession."
+    commit id: "CLINTON: They’ve looked at my plans and they’ve said, OK, if we can do this, and I intend to get it done, we will have 10 million more new jobs, because we will be making investments where we can grow the economy."
+
+    branch "climate_change"
+    commit id: "CLINTON: Take clean energy."
+    commit id: "CLINTON: Some country is going to be the clean- energy superpower of the 21st century."
+    commit id: "CLINTON: Donald thinks that climate change is a hoax perpetrated by the Chinese."
+    commit id: "CLINTON: I think it’s real."
+    commit id: "TRUMP: I did not. I did not. I do not say that."
+    commit id: "CLINTON: I think science is real."
+    commit id: "TRUMP: I do not say that."
+    commit id: "CLINTON: And I think it’s important that we grip this and deal with it, both at home and abroad."
+    commit id: "CLINTON: And here’s what we can do."
+    commit id: "CLINTON: We can deploy a half a billion more solar panels."
+    commit id: "CLINTON: We can have enough clean energy to power every home."
+    commit id: "CLINTON: We can build a new modern electric grid."
+    commit id: "CLINTON: That’s a lot of jobs; that’s a lot of new economic activity."
+    commit id: "CLINTON: So I’ve tried to be very specific about what we can and should do, and I am determined that we’re going to get the economy really moving again, building on the progress we’ve made over the last eight years, but never going back to what got us in trouble in the first place."
+
+    checkout "main"
+    commit id: "HOLT: Mr. Trump?"
+
+    checkout "climate_change"
+    commit id: "TRUMP: She talks about solar panels."
+    commit id: "TRUMP: We invested in a solar company, our country."
+    commit id: "TRUMP: That was a disaster."
+    commit id: "TRUMP: They lost plenty of money on that one."
+    commit id: "TRUMP: Now, look, I’m a great believer in all forms of energy, but we’re putting a lot of people out of work."
+    commit id: "TRUMP: Our energy policies are a disaster."
+    commit id: "TRUMP: Our country is losing so much in terms of energy, in terms of paying off our debt."
+
+    checkout "economy"
+    commit id: "TRUMP: You can’t do what you’re looking to do with $20 trillion in debt."
+    commit id: "TRUMP: The Obama administration, from the time they’ve come in, is over 230 years’ worth of debt, and he’s topped it."
+    commit id: "TRUMP: He’s doubled it in a course of almost eight years, seven-and-a-half years, to be semi- exact."
+    commit id: "TRUMP: So I will tell you this."
+    commit id: "TRUMP: We have to do a much better job at keeping our jobs."
+    commit id: "TRUMP: And we have to do a much better job at giving companies incentives to build new companies or to expand, because they’re not doing it."
+    commit id: "TRUMP: And all you have to do is look at Michigan and look at Ohio and look at all of these places where so many of their jobs and their companies are just leaving, they’re gone."
+    commit id: "TRUMP: And, Hillary, I’d just ask you this."
+    commit id: "TRUMP: You’ve been doing this for 30 years."
+    commit id: "TRUMP: Why are you just thinking about these solutions right now?"
+    commit id: "TRUMP: For 30 years, you’ve been doing it, and now you’re just starting to think of solutions."
+
+    commit id: "CLINTON: Well, actually…"
+
+    commit id: "TRUMP: I will bring—excuse me."
+    commit id: "TRUMP: I will bring back jobs."
+    commit id: "TRUMP: You can’t bring back jobs."
+
+    commit id: "CLINTON: Well, actually, I have thought about this quite a bit."
+
+    commit id: "TRUMP: Yeah, for 30 years."
+
+    commit id: "CLINTON: And I have—well, not quite that long."
+    commit id: "CLINTON: I think my husband did a pretty good job in the 1990s."
+    commit id: "CLINTON: I think a lot about what worked and how we can make it work again…"
+
+    branch "nafta"
+    commit id: "TRUMP: Well, he approved NAFTA…"
+
+    checkout "economy"
+    commit id: "[crosstalk]"
+
+    commit id: "CLINTON: … million new jobs, a balanced budget…"
+
+    checkout "nafta"
+    commit id: "TRUMP: He approved NAFTA, which is the single worst trade deal ever approved in this country."
+
+    checkout "economy"
+    commit id: "CLINTON: Incomes went up for everybody."
+    commit id: "CLINTON: Manufacturing jobs went up also in the 1990s, if we’re actually going to look at the facts."
+    commit id: "CLINTON: When I was in the Senate, I had a number of trade deals that came before me, and I held them all to the same test."
+    commit id: "CLINTON: Will they create jobs in America?"
+    commit id: "CLINTON: Will they raise incomes in America?"
+    commit id: "CLINTON: And are they good for our national security?"
+    commit id: "CLINTON: Some of them I voted for."
+    commit id: "CLINTON: The biggest one, a multinational one known as CAFTA, I voted against."
+    commit id: "CLINTON: And because I hold the same standards as I look at all of these trade deals."
+
+    commit id: "CLINTON: But let’s not assume that trade is the only challenge we have in the economy."
+    commit id: "CLINTON: I think it is a part of it, and I’ve said what I’m going to do."
+    commit id: "CLINTON: I’m going to have a special prosecutor."
+    commit id: "CLINTON: We’re going to enforce the trade deals we have, and we’re going to hold people accountable."
+
+    commit id: "CLINTON: When I was secretary of state, we actually increased American exports globally 30 percent."
+    commit id: "CLINTON: We increased them to China 50 percent."
+    commit id: "CLINTON: So I know how to really work to get new jobs and to get exports that helped to create more new jobs."
+
+    commit id: "HOLT: Very quickly…"
+
+    commit id: "TRUMP: But you haven’t done it in 30 years or 26 years or any number you want to…"
+
+    commit id: "CLINTON: Well, I’ve been a senator, Donald…"
+
+    commit id: "TRUMP: You haven’t done it."
+    commit id: "TRUMP: You haven’t done it."
+
+    commit id: "CLINTON: And I have been a secretary of state…"
+
+    commit id: "TRUMP: Excuse me."
+
+    commit id: "CLINTON: And I have done a lot…"
+
+    checkout "nafta"
+    commit id: "TRUMP: Your husband signed NAFTA, which was one of the worst things that ever happened to the manufacturing industry."
+
+    commit id: "CLINTON: Well, that’s your opinion."
+    commit id: "CLINTON: That is your opinion."
+
+    commit id: "TRUMP: You go to New England, you go to Ohio, Pennsylvania, you go anywhere you want, Secretary Clinton, and you will see devastation where manufacture is down 30, 40, sometimes 50 percent."
+    commit id: "TRUMP: NAFTA is the worst trade deal maybe ever signed anywhere, but certainly ever signed in this country."
+
+    branch "trans_pacific_partnership"
+    commit id: "TRUMP: And now you want to approve Trans-Pacific Partnership."
+    commit id: "TRUMP: You were totally in favor of it."
+    commit id: "TRUMP: Then you heard what I was saying, how bad it is, and you said, I can’t win that debate."
+
+    checkout "nafta"
+    commit id: "TRUMP: But you know that if you did win, you would approve that, and that will be almost as bad as NAFTA."
+    commit id: "TRUMP: Nothing will ever top NAFTA."
+
+    commit id: "CLINTON: Well, that is just not accurate."
+    commit id: "CLINTON: I was against it once it was finally negotiated and the terms were laid out."
+    commit id: "CLINTON: I wrote about that in…"
+
+    commit id: "TRUMP: You called it the gold standard."

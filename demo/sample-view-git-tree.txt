@@ -1,0 +1,33 @@
+---
+config:
+  logLevel: debug
+  theme: base
+  themeVariables:
+      'git0': '#e07b54'
+      'git1': '#5ab4e0'
+      'git2': '#7bc98a'
+      'git3': '#c97bc2'
+---
+gitGraph TB:
+  commit id: "[n1]: Let's go through the Q3 roadmap and prioritise what we're actually shipping."
+  commit id: "[n2]: I've got the feature list here — authentication overhaul, the new dashboard, and the export pipeline."
+  commit id: "[n3]: Before we dive in — are we still blocked by the auth service migration?"
+  branch tech_debt
+  commit id: "[n4]: Yeah, that's actually a significant problem. The legacy auth layer is tightly coupled to the new feature work." type: REVERSE
+  commit id: "[n5]: How long would it take to properly decouple it?"
+  commit id: "[n6]: Realistically, two weeks of focused engineering time."
+  checkout main
+  commit id: "[n7]: OK so we schedule that as a prerequisite. That resolves the auth blocker — let's move on." type: HIGHLIGHT
+  checkout main
+  merge tech_debt
+  commit id: "[n8]: Right. So for the dashboard — what's the scope we're committing to?"
+  branch capacity
+  commit id: "[n9]: That depends a lot on who's available. We might lose two engineers to the platform team in August." type: REVERSE
+  commit id: "[n10]: Has that been confirmed? I haven't seen anything official."
+  commit id: "[n11]: Not confirmed, but likely. We should plan for reduced capacity just in case."
+  branch competitor_analysis
+  commit id: "[n12]: We should also look at what competitors shipped last quarter — might affect our priorities."
+  checkout main
+  merge competitor_analysis
+  commit id: "[n13]: Can we park competitor analysis for a separate session and stay focused on the roadmap today?"
+  commit id: "[n14]: Agreed. Given the capacity uncertainty, let's commit to a reduced dashboard scope with optional stretch goals."
